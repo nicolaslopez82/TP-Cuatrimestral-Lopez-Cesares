@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using CapaAccesoDatos;
@@ -48,7 +45,8 @@ namespace CapaDAO
                     objPaciente.Nombres = dr["nombre"].ToString();
                     objPaciente.Apellido = dr["apellido"].ToString();
                     objPaciente.Edad = Convert.ToInt32(dr["edad"].ToString());
-                    objPaciente.Sexo = Convert.ToChar(dr["sexo"].ToString());
+                    //objPaciente.Sexo = Convert.ToChar(dr["sexo"].ToString());
+                    objPaciente.Sexo = Convert.ToChar(dr["sexo"]);
                     objPaciente.NroDocumento = dr["nroDocumento"].ToString();
                     objPaciente.Direccion = dr["direccion"].ToString();
                     objPaciente.Telefono = dr["telefono"].ToString();
@@ -68,6 +66,145 @@ namespace CapaDAO
                 con.Close();
             }
             return Lista;
+        }
+
+        public bool RegistrarPaciente(Paciente objPaciente)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            bool response = false;
+            try
+            {
+                con = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("SP_RegistrarPaciente", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmNombres", objPaciente.Nombres);                
+                cmd.Parameters.AddWithValue("@prmApellido", objPaciente.Apellido);
+                cmd.Parameters.AddWithValue("@prmEdad", objPaciente.Edad);
+                cmd.Parameters.AddWithValue("@prmSexo", objPaciente.Sexo);
+                cmd.Parameters.AddWithValue("@prmNroDoc", objPaciente.NroDocumento);
+                cmd.Parameters.AddWithValue("@prmDireccion", objPaciente.Direccion);
+                cmd.Parameters.AddWithValue("@prmTelefono", objPaciente.Telefono);
+                cmd.Parameters.AddWithValue("@prmEstado", objPaciente.Estado);
+                con.Open();
+
+                int filas = cmd.ExecuteNonQuery();
+                if (filas > 0) response = true;
+
+            }
+            catch (Exception ex)
+            {
+                response = false;
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return response;
+        }
+
+        public bool Actualizar(Paciente objPaciente)
+        {
+            bool ok = false;
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("SP_ActualizarDatosPaciente", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmIdPaciente", objPaciente.IdPaciente);
+                cmd.Parameters.AddWithValue("@prmDireccion", objPaciente.Direccion);
+
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                ok = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return ok;
+        }
+
+        public bool Eliminar(int id)
+        {
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+            bool ok = false;
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("SP_EliminarPaciente", conexion);
+                cmd.Parameters.AddWithValue("@prmIdPaciente", id);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                ok = true;
+
+            }
+            catch (Exception ex)
+            {
+                ok = false;
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return ok;
+        }
+
+        public Paciente BuscarPacienteDNI(string dni)
+        {
+            SqlConnection conex = null;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            Paciente objPaciente = null;
+
+            try
+            {
+                conex = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("SP_BuscarPacienteDNI", conex);
+                cmd.Parameters.AddWithValue("@prmDni", dni);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                conex.Open();
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    objPaciente = new Paciente
+                    {
+                        IdPaciente = Convert.ToInt32(dr["idPaciente"].ToString()),
+                        Nombres = dr["Nombres"].ToString(),
+                        Apellido = dr["Apellido"].ToString(),                        
+                        Telefono = dr["Telefono"].ToString(),
+                        Edad = Convert.ToInt32(dr["Edad"].ToString()),
+                        Sexo = Convert.ToChar(dr["Sexo"].ToString())
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                objPaciente = null;
+                throw ex;
+            }
+            finally
+            {
+                conex.Close();
+            }
+            return objPaciente;
         }
     }
 }

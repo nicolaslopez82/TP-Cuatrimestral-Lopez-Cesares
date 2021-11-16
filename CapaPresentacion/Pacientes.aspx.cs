@@ -17,7 +17,7 @@ namespace CapaPresentacion
     {
       if (!Page.IsPostBack)
       {
-        // Page.ClientScript.RegisterClientScriptInclude("pacientejs", "js/paciente.js");
+        // Page.ClientScript.RegisterClientScriptInclude("Pacientesjs", "js/Pacientes.js");
       }
     }
 
@@ -34,6 +34,39 @@ namespace CapaPresentacion
         Lista = new List<Paciente>();
       }
       return Lista;
+    }
+
+    protected void btnRegistrar_Click(object sender, EventArgs e)
+    {
+      // Registro del paciente
+      Paciente objPaciente = GetEntity();
+      // enviar a la capa de logica de negocio
+      bool response = PacienteNegocio.getInstance().RegistrarPaciente(objPaciente);
+      if (response)
+      {
+        Response.Write("<script>alert('REGISTRO CORRECTO.')</script>");
+
+      }
+      else
+      {
+        Response.Write("<script>alert('REGISTRO INCORRECTO.')</script>");
+      }
+    }
+
+    private Paciente GetEntity()
+    {
+      Paciente objPaciente = new Paciente();
+      objPaciente.IdPaciente = 0;
+      objPaciente.Nombres = txtNombres.Text;
+      objPaciente.Apellido = txtApellido.Text;
+      objPaciente.Edad = Convert.ToInt32(txtEdad.Text);
+      objPaciente.Sexo = (ddlSexo.SelectedValue == "Femenino") ? 'F' : 'M'; // Masculino , Femenino
+      objPaciente.NroDocumento = txtNroDocumento.Text;
+      objPaciente.Direccion = txtDireccion.Text;
+      objPaciente.Telefono = txtTelefono.Text;
+      objPaciente.Estado = true;
+
+      return objPaciente;
     }
   }
 }
