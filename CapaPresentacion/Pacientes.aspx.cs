@@ -13,6 +13,7 @@ namespace CapaPresentacion
 {
   public partial class Pacientes : System.Web.UI.Page
   {
+    
     protected void Page_Load(object sender, EventArgs e)
     {
       if (!Page.IsPostBack)
@@ -26,7 +27,7 @@ namespace CapaPresentacion
     {
       List<Paciente> Lista = null;
       try
-      {
+      {        
         Lista = PacienteNegocio.getInstance().ListarPacientes();
       }
       catch (Exception ex)
@@ -56,15 +57,15 @@ namespace CapaPresentacion
     private Paciente GetEntity()
     {
       Paciente objPaciente = new Paciente();
-      objPaciente.IdPaciente = 0;
-      objPaciente.Nombres = txtNombres.Text;
-      objPaciente.Apellido = txtApellido.Text;
-      objPaciente.Edad = Convert.ToInt32(txtEdad.Text);
-      objPaciente.Sexo = (ddlSexo.SelectedValue == "Femenino") ? 'F' : 'M'; // Masculino , Femenino
-      objPaciente.NroDocumento = txtNroDocumento.Text;
-      objPaciente.Direccion = txtDireccion.Text;
-      objPaciente.Telefono = txtTelefono.Text;
-      objPaciente.Estado = true;
+      //objPaciente.IdPaciente = 0;
+      //objPaciente.Nombres = txtNombres.Text;
+      //objPaciente.Apellido = txtApellido.Text;
+      //objPaciente.Edad = Convert.ToInt32(txtEdad.Text);
+      //objPaciente.Sexo = (ddlSexo.SelectedValue == "Femenino") ? 'F' : 'M'; // Masculino , Femenino
+      //objPaciente.NroDocumento = txtNroDocumento.Text;
+      //objPaciente.Direccion = txtDireccion.Text;
+      //objPaciente.Telefono = txtTelefono.Text;
+      //objPaciente.Estado = true;
 
       return objPaciente;
     }

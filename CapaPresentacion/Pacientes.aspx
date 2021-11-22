@@ -52,10 +52,12 @@
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
+  </section>
 
-      <%--<div class="modal fade" id="modal-lg">
+  <%--<section>--%>
+  <div class="modal fade" id="modal-actualizar">
         <div class="modal-dialog modal-lg">
-           <form id="FormModalActualizar" runat="server">
+          <form id="FormModalActualizar" runat="server">
           <div class="modal-content">
           
             <div class="modal-header">
@@ -64,42 +66,71 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-           
-            <div class="modal-body">
-              <div class="modal-body">                
-                 
+                       
+              <div class="modal-body">                                 
                     <div class="form-group">
-                        <label>NOMBRES Y APELLIDOS</label>
+                        <label>NOMBRE</label>
                     </div>
                     <div class="form-group">                       
-                      <asp:TextBox ID="txtFullName" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                      <asp:TextBox ID="txtNombreActualizar" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="form-group">
-                        <label>DIRECCIÓN</label>
+                        <label>APELLIDO</label>
+                    </div>
+                    <div class="form-group">                       
+                      <asp:TextBox ID="txtApellidoActualizar" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label>EDAD</label>
                     </div>
                     <div class="form-group">                        
-                        <asp:TextBox ID="txtModalDireccion" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtEdadActualizar" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label>SEXO</label>
+                    </div>
+                    <div class="form-group">                        
+                        <asp:TextBox ID="txtSexoActualizar" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label>DNI</label>
+                    </div>
+                    <div class="form-group">                        
+                        <asp:TextBox ID="txtNroDocumentoActualizar" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label>DIRECCION</label>
+                    </div>
+                    <div class="form-group">                        
+                        <asp:TextBox ID="txtDireccionActualizar" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label>TELEFONO</label>
+                    </div>
+                    <div class="form-group">                        
+                        <asp:TextBox ID="txtTelefonoActualizar" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
                   
-                </div>
-            </div>
+                </div>            
             
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-primary">Guardar</button>
-              <asp:Button ID="btnActualizarCancelar" runat="server" class="btn btn-default" data-dismiss="modal" Text="Button" />
-              <asp:Button ID="btnActualizarGuardar" runat="server" class="btn btn-primary" Text="Button" />
+            <div class="modal-footer justify-content-between">              
+              <asp:Button ID="btnActualizarCancelar" runat="server" class="btn btn-secondary" data-dismiss="modal" Text="Cancelar" />
+              <asp:Button ID="btnActualizarGuardar" runat="server" class="btn btn-primary" Text="Actualizar" />
             </div>            
           </div>
-             </form>
+          </form>
           <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
-      </div>--%>
+      </div>
       <!-- /.modal -->
+  <%--</section>--%>
 
-  </section>
-  <section class="content">
+
+
+  
+
+  <%--<section class="content">
     <form id="formRegistro" runat="server">
           <LayoutTemplate>
       <!-- Formulario Registro Paciente Nuevo - INICIO -->      
@@ -181,7 +212,7 @@
      </form>
         <!-- Formulario Registro Paciente Nuevo - FIN -->
 
-    </section>
+    </section--%>>
   <!-- /.content -->
   
 </asp:Content>

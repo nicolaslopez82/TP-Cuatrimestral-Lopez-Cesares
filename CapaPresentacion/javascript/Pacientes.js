@@ -50,11 +50,9 @@ function addRowDT(data) {
       data[i].Sexo = 'M' ? "Masculino" : "Femenino",
       data[i].NroDocumento,
       data[i].Direccion,
-      data[i].Telefono,                          
-      //'<button type="button" value="Actualizar" title="Actualizar" class="btn btn-info btn-block btn-flat" data-target="#imodal" data-toggle="modal"><i class="fa fa-bell" aria-hidden="true"></i></button>&nbsp;' +
-      //'<button type="button" value="Eliminar" title="Eliminar" class="btn btn-danger btn-block btn-sm"><i class="fa fa-bell" aria-hidden="true"></i></button>'
-      '<button type="button" class="btn btn-info btn-block btn-sm" data-toggle="modal" data-target="#modal-info"><i class="fa fa-book"></i>  Actualizar</button>&nbsp;' +
-      '<button type="button" class="btn btn-danger btn-block btn-sm" data-toggle="modal" data-target="#modal-danger"><i class="fa fa-book"></i>  Eliminar</button>'
+      data[i].Telefono,                                
+      '<button type="button" value="Actualizar" title="Actualizar" class="btn btn-primary btn-block btn-sm btn-edit" data-target="#modal-actualizar" data-toggle="modal" onclick="cargarModalActualizar()"><i class="fa fa-book"></i>  Actualizar</button>' +
+      '<button type="button" value="Eliminar" title="Eliminar" class="btn btn-danger btn-block btn-sm btn-delete"><i class="fa fa-book"></i>  Eliminar</button>'
     ]);
   }
   //  ((data[i].Estado == true) ? "Activo" : "Inactivo")
@@ -99,20 +97,40 @@ function updateDataAjax() {
 }
 
 
-// cargar datos en el modal
-function fillModalData() {
-  $("#txtFullName").val(data[1] + " " + data[2]);
-  $("#txtModalDireccion").val(data[6]);
+
+
+function cargarModalActualizar() {
+  e.preventDefault();
+  var row = $(this).parent().parent()[0];
+  data = tabla.fillModalData(row);
+  fillModalData();  
 }
 
 // evento click para boton actualizar
-$(document).on('click', '.btn-info', function (e) {
+//$(document).on('click', '.btn-edit', function (e) {
+//  e.preventDefault();
+
+//  var row = $(this).parent().parent()[0];
+//  data = tabla.fillModalData(row);
+//  fillModalData();
+
+//});
+
+// cargar datos en el modal
+function fillModalData() {
+  $("#txtNombreActualizar").val('nicolas');
+  $("#txtApellidoActualizar").val('lopez');
+  $("#txtEdadActualizar").val(data[3]);
+  $("#txtSexoActualizar").val(data[4]);
+  $("#txtNroDocumentoActualizar").val(data[5]);
+  $("#txtDireccionActualizar").val(data[6]);
+  $("#txtTelefonoActualizar").val(data[7]);
+}
+
+// enviar la informacion al servidor
+$("#btnActualizarGuardar").click(function (e) {
   e.preventDefault();
-
-  var row = $(this).parent().parent()[0];
-  data = tabla.fillModalData(row);
-  fillModalData();
-
+  updateDataAjax();
 });
 
 // Llamando a la funcion de ajax al cargar el documento
