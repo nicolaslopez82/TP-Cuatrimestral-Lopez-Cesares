@@ -242,6 +242,44 @@ INSERT [dbo].[Usuario] ([idUsuario], [idTipoUsuario], [nombre], [apellido], [nro
 INSERT [dbo].[Usuario] ([idUsuario], [idTipoUsuario], [nombre], [apellido], [nroDocumento], [estado], [usuario], [contrasenia]) VALUES (7, 3, 'Graciela', 'Rosalin', '12756398', 1, 'grosalin', ENCRYPTBYPASSPHRASE('utnclinica', 'frutilla123'))
 SET IDENTITY_INSERT [dbo].[Usuario] OFF
 
+--SET IDENTITY_INSERT Paciente ON
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Eddard', 'Stark', 30, 'M', '12345678', 'Winterfell 1234', '1512354378', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Robert', 'Baratheon', 40, 'M', '22345678', 'Kinglanding 1234', '1512445678', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Jaime', 'Lannister', 30, 'M', '32345678', 'Lannister 1234', '1522345678', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Daenerys', ' Targaryen', 28, 'F', '42345678', ' Targaryen 1234', '1515874678', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Sansa', 'Stark', 14, 'F', '52345678', 'Winterfell 1324', '15198675678', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Arya', 'Stark', 16, 'F', '62345678', 'Winterfell 4321', '1512452378', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Jeor', 'Mormont', 30, 'M', '72345678', 'Mormont 1234', '1517855678', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Margaery', 'Tyrell', 27, 'F', '82345678', 'Tyrell 1234', '1519355678', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Tywin Lannister', 'apellido', 32, 'M', '92345678', 'Lannister 5555', '1512343338', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Tommen Baratheon', 'apellido', 55, 'M', '11345611', 'Baratheon 4444', '1511239998', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('John', 'Snow', 33, 'M', '22345622', 'Targaryen Winterfell 1234', '153237678', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Roose', 'Bolton', 26, 'M', '33345633', 'Bolton 1234', '1512985648', 1)
+--SET IDENTITY_INSERT Paciente OFF
+
 /****** Object:  StoredProcedure [dbo].[SP_AgregarUsuario] ******/
 SET ANSI_NULLS ON
 GO
