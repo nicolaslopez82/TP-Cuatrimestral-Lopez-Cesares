@@ -398,4 +398,25 @@ BEGIN
 END
 GO
 
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ListarPacientes]
+AS
+BEGIN
+	SELECT 
+	[idPaciente]
+      ,[nombre]
+      ,[apellido]
+      ,[edad]
+      ,[sexo]
+      ,[nroDocumento]
+      ,[direccion]
+      ,[telefono]
+      ,[estado]
+	FROM [TPC_Clinica].[dbo].[Paciente]
+END
+GO
+
 -- DROP PROCEDURE [SP_BuscarSiExisteUsuarioPorUsuario];
