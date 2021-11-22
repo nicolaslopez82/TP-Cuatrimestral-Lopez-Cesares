@@ -278,6 +278,21 @@ SET IDENTITY_INSERT [dbo].[Usuario] OFF
 
 --INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
 --VALUES ('Roose', 'Bolton', 26, 'M', '33345633', 'Bolton 1234', '1512985648', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Tommen', 'Baratheon', 26, 'M', '33355633', 'Baratheon 1234', '1512973448', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Robb', 'Stark', 34, 'M', '99945633', 'Winterfell 1234', '1512167648', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Khal', 'Drogo', 37, 'M', '36645633', 'Dothraki 1234', '1512985999', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Melisandre', 'Bruja', 99, 'F', '77745633', 'Brujas 1234', '1512985888', 1)
+
+--INSERT Paciente ( nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+--VALUES ('Tyrion', 'Lannister', 31, 'M', '87645633', 'Lannister 5555', '1512985777', 1)
 --SET IDENTITY_INSERT Paciente OFF
 
 /****** Object:  StoredProcedure [dbo].[SP_AgregarUsuario] ******/
