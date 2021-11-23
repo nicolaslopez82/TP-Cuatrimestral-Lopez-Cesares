@@ -1,6 +1,7 @@
 
 function templateRow() {
-  var template = "<tr>";  
+  var template = "<tr>";
+  template += ("<td>" + "123" + "</td>");
   template += ("<td>" + "Jorge Junior" + "</td>");
   template += ("<td>" + "Rodriguez Castillo" + "</td>");
   template += ("<td>" + "123" + "</td>");
@@ -23,7 +24,7 @@ function addRow() {
 var tabla, data;
 
 function addRowDT(data) {
-  tabla = $("#pacientesList").dataTable({
+  tabla = $("#pacientesList").DataTable({
     "aaSorting": [[0, 'desc']],
     "bSort": true,
     "bDestroy": true,
@@ -32,6 +33,7 @@ function addRowDT(data) {
       null,
       null,
       null,
+      null,    
       null,    
       null,               
       null,               
@@ -44,6 +46,7 @@ function addRowDT(data) {
 
   for (var i = 0; i < data.length; i++) {
     tabla.fnAddData([
+      data[i].IdPaciente,
       data[i].Nombres,
       data[i].Apellido,
       data[i].Edad,
@@ -51,8 +54,8 @@ function addRowDT(data) {
       data[i].NroDocumento,
       data[i].Direccion,
       data[i].Telefono,                                
-      '<button type="button" value="Actualizar" title="Actualizar" class="btn btn-primary btn-block btn-sm btn-edit" data-target="#modal-actualizar" data-toggle="modal" onclick="cargarModalActualizar()"><i class="fa fa-book"></i>  Actualizar</button>' +
-      '<button type="button" value="Eliminar" title="Eliminar" class="btn btn-danger btn-block btn-sm btn-delete"><i class="fa fa-book"></i>  Eliminar</button>'
+      '<button type="button" value="Actualizar" title="Actualizar" class="btn btn-primary btn-block btn-sm btn-edit" data-target="#imodal" data-toggle="modal"><i class="fa fa-book"></i>  Actualizar</button>' +
+      '<button type="button" value="Eliminar" title="Eliminar" class="btn btn-danger btn-block btn-sm btn-delete"><i class="fa fa-book"></i>  Eliminar</button>'      
     ]);
   }
   //  ((data[i].Estado == true) ? "Activo" : "Inactivo")
@@ -99,32 +102,37 @@ function updateDataAjax() {
 
 
 
-function cargarModalActualizar() {
-  e.preventDefault();
-  var row = $(this).parent().parent()[0];
-  data = tabla.fillModalData(row);
-  fillModalData();  
-}
-
-// evento click para boton actualizar
-//$(document).on('click', '.btn-edit', function (e) {
+//function cargarModalActualizar(e) {
 //  e.preventDefault();
-
 //  var row = $(this).parent().parent()[0];
 //  data = tabla.fillModalData(row);
-//  fillModalData();
+//  fillModalData();  
+//}
 
-//});
+// evento click para boton actualizar
+$(document).on('click', '.btn-edit', function (e) {
+  e.preventDefault();
+
+  var row = $(this).parent().parent()[0];
+  var dataRow = tabla.fnGetData(row);
+  //console.log(dataRow);
+  data = dataRow;
+  fillModalData();
+
+});
 
 // cargar datos en el modal
 function fillModalData() {
-  $("#txtNombreActualizar").val('nicolas');
-  $("#txtApellidoActualizar").val('lopez');
-  $("#txtEdadActualizar").val(data[3]);
-  $("#txtSexoActualizar").val(data[4]);
-  $("#txtNroDocumentoActualizar").val(data[5]);
-  $("#txtDireccionActualizar").val(data[6]);
-  $("#txtTelefonoActualizar").val(data[7]);
+  //e.preventDefault();  
+  //console.log(data[2]);
+  $('#MainContent_txtNombreActualizar').val(data[1]);
+  $('#MainContent_txtApellidoActualizar').val(data[2]);
+  $('#MainContent_txtEdadActualizar').val(data[3]);
+  $('#MainContent_txtSexoActualizar').val(data[4]);
+  $('#MainContent_txtNroDocumentoActualizar').val(data[5]);
+  $('#MainContent_txtDireccionActualizar').val(data[6]);
+  $('#MainContent_txtTelefonoActualizar').val(data[7]);
+  console.log("ya deberia haber cargado");
 }
 
 // enviar la informacion al servidor

@@ -12,9 +12,10 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                      <table id="pacientesList" class="table table-bordered table-striped">
+                      <table id="pacientesList" class="table table-bordered table-hover table-striped">
                         <thead>
-                        <tr>                          
+                        <tr>
+                          <th>IdPaciente</th>
                           <th>Nombres</th>
                           <th>Apellido</th>
                           <th>Edad</th>
@@ -30,6 +31,7 @@
                             </tbody>                        
                         <tfoot>
                         <tr>                          
+                          <th>IdPaciente</th>
                           <th>Nombres</th>
                           <th>Apellido</th>
                           <th>Edad</th>
@@ -54,14 +56,11 @@
       <!-- /.container-fluid -->
   </section>
 
-  <%--<section>--%>
-  <div class="modal fade" id="modal-actualizar">
-        <div class="modal-dialog modal-lg">
-          <form id="FormModalActualizar" runat="server">
-          <div class="modal-content">
-          
+  <div class="modal fade" id="imodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">          
+          <div class="modal-content">          
             <div class="modal-header">
-              <h4 class="modal-title">Actualizar Paciente</h4>
+              <h4 class="modal-title" id="myModalLabel">Actualizar Paciente</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -72,59 +71,56 @@
                         <label>NOMBRE</label>
                     </div>
                     <div class="form-group">                       
-                      <asp:TextBox ID="txtNombreActualizar" runat="server" CssClass="form-control"></asp:TextBox>
+                      <asp:TextBox ID="txtNombreActualizar" runat="server" Text="" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label>APELLIDO</label>
                     </div>
                     <div class="form-group">                       
-                      <asp:TextBox ID="txtApellidoActualizar" runat="server" CssClass="form-control"></asp:TextBox>
+                      <asp:TextBox ID="txtApellidoActualizar" runat="server" Text="" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label>EDAD</label>
                     </div>
                     <div class="form-group">                        
-                        <asp:TextBox ID="txtEdadActualizar" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtEdadActualizar" runat="server" Text="" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label>SEXO</label>
                     </div>
                     <div class="form-group">                        
-                        <asp:TextBox ID="txtSexoActualizar" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtSexoActualizar" runat="server" Text="" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label>DNI</label>
                     </div>
                     <div class="form-group">                        
-                        <asp:TextBox ID="txtNroDocumentoActualizar" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                        <asp:TextBox ID="txtNroDocumentoActualizar" runat="server" Text="" CssClass="form-control" Enabled="false"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label>DIRECCION</label>
                     </div>
                     <div class="form-group">                        
-                        <asp:TextBox ID="txtDireccionActualizar" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:TextBox ID="txtDireccionActualizar" runat="server" Text="" CssClass="form-control"></asp:TextBox>
                     </div>
                     <div class="form-group">
                         <label>TELEFONO</label>
                     </div>
                     <div class="form-group">                        
-                        <asp:TextBox ID="txtTelefonoActualizar" runat="server" CssClass="form-control"></asp:TextBox>
-                    </div>
-                  
+                        <asp:TextBox ID="txtTelefonoActualizar" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                    </div>                  
                 </div>            
             
-            <div class="modal-footer justify-content-between">              
-              <asp:Button ID="btnActualizarCancelar" runat="server" class="btn btn-secondary" data-dismiss="modal" Text="Cancelar" />
-              <asp:Button ID="btnActualizarGuardar" runat="server" class="btn btn-primary" Text="Actualizar" />
-            </div>            
-          </div>
-          </form>
+                <div class="modal-footer justify-content-between">              
+                  <asp:Button ID="btnActualizarCancelar" runat="server" class="btn btn-secondary" data-dismiss="modal" Text="Cancelar"/>
+                  <asp:Button ID="btnActualizarGuardar" runat="server" class="btn btn-primary" Text="Actualizar"/>
+                </div>            
+          </div>          
           <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
       </div>
-      <!-- /.modal -->
-  <%--</section>--%>
+      <!-- /.modal -->  
 
 
 
@@ -212,7 +208,7 @@
      </form>
         <!-- Formulario Registro Paciente Nuevo - FIN -->
 
-    </section--%>>
+    </section--%>
   <!-- /.content -->
   
 </asp:Content>
