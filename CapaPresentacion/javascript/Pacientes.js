@@ -78,11 +78,20 @@ function sendDataAjax() {
 
 function updateDataAjax() {
 
-  var obj = JSON.stringify({ id: JSON.stringify(data[0]), direccion: $("#txtModalDireccion").val() });
+  var obj = JSON.stringify({
+    id: JSON.stringify(data[0]),
+    nombres: $("#MainContent_txtNombreActualizar").val(),
+    apellido: $("#MainContent_txtApellidoActualizar").val(),
+    edad: $("#MainContent_txtEdadActualizar").val(),
+    sexo: $("#MainContent_txtSexoActualizar").val(),
+    nroDocumento: $("#MainContent_txtNroDocumentoActualizar").val(),
+    direccion: $("#MainContent_txtDireccionActualizar").val(),
+    telefono: $("#MainContent_txtTelefonoActualizar").val()
+  });
 
   $.ajax({
     type: "POST",
-    url: "GestionarPaciente.aspx/ActualizarDatosPaciente",
+    url: "Pacientes.aspx/ActualizarDatosPaciente",
     data: obj,
     dataType: "json",
     contentType: 'application/json; charset=utf-8',
@@ -100,15 +109,6 @@ function updateDataAjax() {
 }
 
 
-
-
-//function cargarModalActualizar(e) {
-//  e.preventDefault();
-//  var row = $(this).parent().parent()[0];
-//  data = tabla.fillModalData(row);
-//  fillModalData();  
-//}
-
 // evento click para boton actualizar
 $(document).on('click', '.btn-edit', function (e) {
   e.preventDefault();
@@ -123,21 +123,18 @@ $(document).on('click', '.btn-edit', function (e) {
 
 // cargar datos en el modal
 function fillModalData() {
-  //e.preventDefault();  
-  //console.log(data[2]);
   $('#MainContent_txtNombreActualizar').val(data[1]);
   $('#MainContent_txtApellidoActualizar').val(data[2]);
   $('#MainContent_txtEdadActualizar').val(data[3]);
   $('#MainContent_txtSexoActualizar').val(data[4]);
   $('#MainContent_txtNroDocumentoActualizar').val(data[5]);
   $('#MainContent_txtDireccionActualizar').val(data[6]);
-  $('#MainContent_txtTelefonoActualizar').val(data[7]);
-  console.log("ya deberia haber cargado");
+  $('#MainContent_txtTelefonoActualizar').val(data[7]);  
 }
 
 // enviar la informacion al servidor
-$("#btnActualizarGuardar").click(function (e) {
-  e.preventDefault();
+$("#MainContent_btnActualizarGuardar").click(function (e) {
+  e.preventDefault(); 
   updateDataAjax();
 });
 

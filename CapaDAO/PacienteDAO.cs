@@ -114,9 +114,14 @@ namespace CapaDAO
                 conexion = Conexion.getInstance().ConexionBD();
                 cmd = new SqlCommand("SP_ActualizarDatosPaciente", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@prmIdPaciente", objPaciente.IdPaciente);
+                cmd.Parameters.AddWithValue("@prmIdPaciente", objPaciente.IdPaciente);                
+                cmd.Parameters.AddWithValue("@prmNombre", objPaciente.Nombres);
+                cmd.Parameters.AddWithValue("@prmApellido", objPaciente.Apellido);
+                cmd.Parameters.AddWithValue("@prmEdad", objPaciente.Edad);
+                cmd.Parameters.AddWithValue("@prmSexo", objPaciente.Sexo);
+                cmd.Parameters.AddWithValue("@prmNroDocumento", objPaciente.NroDocumento);
                 cmd.Parameters.AddWithValue("@prmDireccion", objPaciente.Direccion);
-
+                cmd.Parameters.AddWithValue("@prmTelefono", objPaciente.Telefono);
                 conexion.Open();
 
                 cmd.ExecuteNonQuery();

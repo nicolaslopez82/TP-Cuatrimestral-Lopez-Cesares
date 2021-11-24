@@ -420,3 +420,31 @@ END
 GO
 
 -- DROP PROCEDURE [SP_BuscarSiExisteUsuarioPorUsuario];
+
+/****** Object:  StoredProcedure [dbo].[SP_ActualizarDatosPaciente] ******/      
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ActualizarDatosPaciente]
+(@prmIdPaciente int,
+@prmNombre varchar(50),
+@prmApellido varchar(20),
+@prmEdad int,
+@prmSexo char(1),
+@prmNroDocumento varchar(8),
+@prmDireccion varchar(150),
+@prmTelefono varchar(20))
+as
+	begin
+		update Paciente
+		set Paciente.nombre = @prmNombre,
+		Paciente.apellido = @prmApellido,
+		Paciente.edad = @prmEdad,
+		Paciente.sexo = @prmSexo,
+		Paciente.nroDocumento = @prmNroDocumento,
+		Paciente.direccion = @prmDireccion,
+		Paciente.telefono = @prmTelefono	
+		where Paciente.idPaciente = @prmIdPaciente
+	end
+GO

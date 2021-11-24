@@ -37,6 +37,45 @@ namespace CapaPresentacion
       return Lista;
     }
 
+    [WebMethod]
+    public static bool ActualizarDatosPaciente(String id,
+                                                String nombres,
+                                                String apellido,
+                                                String edad,
+                                                String sexo,
+                                                String nroDocumento,
+                                                String direccion,
+                                                String telefono)
+    {
+      char cSexo;
+      cSexo = sexo.Equals("Masculino") ? 'M' : 'S';
+      //if (sexo.Equals("Masculino"))
+      //{
+      //  cSexo = 'M';
+      //}
+      //else
+      //{
+      //  cSexo = 'F';
+      //}
+      
+
+      Paciente objPaciente = new Paciente()
+      {
+        IdPaciente = Convert.ToInt32(id),
+        Nombres = nombres,
+        Apellido = apellido,
+        Edad = Convert.ToInt32(edad),
+        Sexo = cSexo,
+        NroDocumento = nroDocumento,
+        Direccion = direccion,
+        Telefono = telefono
+        
+      };
+
+      bool ok = PacienteNegocio.getInstance().Actualizar(objPaciente);
+      return ok;
+    }
+
     protected void btnRegistrar_Click(object sender, EventArgs e)
     {
       // Registro del paciente
