@@ -448,3 +448,19 @@ as
 		where Paciente.idPaciente = @prmIdPaciente
 	end
 GO
+
+
+/****** Object:  StoredProcedure [dbo].[SP_EliminarPaciente] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_EliminarPaciente]
+(@prmIdPaciente int)
+AS
+	BEGIN
+		UPDATE Paciente
+		SET estado = 0
+		WHERE idPaciente = @prmIdPaciente
+	END
+GO

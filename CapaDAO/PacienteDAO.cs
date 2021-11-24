@@ -139,7 +139,7 @@ namespace CapaDAO
             return ok;
         }
 
-        public bool Eliminar(int id)
+        public bool Eliminar(int idPaciente)
         {
             SqlConnection conexion = null;
             SqlCommand cmd = null;
@@ -148,7 +148,7 @@ namespace CapaDAO
             {
                 conexion = Conexion.getInstance().ConexionBD();
                 cmd = new SqlCommand("SP_EliminarPaciente", conexion);
-                cmd.Parameters.AddWithValue("@prmIdPaciente", id);
+                cmd.Parameters.AddWithValue("@prmIdPaciente", idPaciente);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 conexion.Open();

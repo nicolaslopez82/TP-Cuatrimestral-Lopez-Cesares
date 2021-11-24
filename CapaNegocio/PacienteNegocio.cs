@@ -56,11 +56,11 @@ namespace CapaNegocio
             }
         }
 
-        public bool Eliminar(int id)
+        public bool Eliminar(int idPaciente)
         {
             try
             {
-                return PacienteDAO.getInstance().Eliminar(id);
+                return PacienteDAO.getInstance().Eliminar(idPaciente);
             }
             catch (Exception ex)
             {

@@ -108,6 +108,29 @@ function updateDataAjax() {
   });
 }
 
+function deleteDataAjax(data) {
+
+  var obj = JSON.stringify({ id: JSON.stringify(data) });
+
+  $.ajax({
+    type: "POST",
+    url: "Pacientes.aspx/EliminarPaciente",
+    data: obj,
+    dataType: "json",
+    contentType: 'application/json; charset=utf-8',
+    error: function (xhr, ajaxOptions, thrownError) {
+      console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+    },
+    success: function (response) {
+      if (response.d) {
+        alert("Registro eliminado de manera correcta.");
+      } else {
+        alert("No se pudo eliminar el registro.");
+      }
+    }
+  });
+}
+
 
 // evento click para boton actualizar
 $(document).on('click', '.btn-edit', function (e) {
@@ -118,6 +141,22 @@ $(document).on('click', '.btn-edit', function (e) {
   //console.log(dataRow);
   data = dataRow;
   fillModalData();
+
+});
+
+// evento click para boton eliminar
+$(document).on('click', '.btn-delete', function (e) {
+  e.preventDefault();
+
+  //primer método: eliminar la fila del datatble
+  var row = $(this).parent().parent()[0];
+  var dataRow = tabla.fnGetData(row);
+
+  //segundo método: enviar el codigo del paciente al servidor y eliminarlo, renderizar el datatable
+  // paso 1: enviar el id al servidor por medio de ajax
+  deleteDataAjax(dataRow[0]);
+  // paso 2: renderizar el datatable
+  sendDataAjax();
 
 });
 
@@ -136,6 +175,7 @@ function fillModalData() {
 $("#MainContent_btnActualizarGuardar").click(function (e) {
   e.preventDefault(); 
   updateDataAjax();
+  sendDataAjax();
 });
 
 // Llamando a la funcion de ajax al cargar el documento

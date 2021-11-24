@@ -46,19 +46,8 @@ namespace CapaPresentacion
                                                 String nroDocumento,
                                                 String direccion,
                                                 String telefono)
-    {
-      char cSexo;
-      cSexo = sexo.Equals("Masculino") ? 'M' : 'S';
-      //if (sexo.Equals("Masculino"))
-      //{
-      //  cSexo = 'M';
-      //}
-      //else
-      //{
-      //  cSexo = 'F';
-      //}
-      
-
+    {      
+      char cSexo = sexo.Equals("Masculino") ? 'M' : 'S';     
       Paciente objPaciente = new Paciente()
       {
         IdPaciente = Convert.ToInt32(id),
@@ -74,6 +63,17 @@ namespace CapaPresentacion
 
       bool ok = PacienteNegocio.getInstance().Actualizar(objPaciente);
       return ok;
+    }
+
+    [WebMethod]
+    public static bool EliminarPaciente(String id)
+    {
+      Int32 idPaciente = Convert.ToInt32(id);
+
+      bool ok = PacienteNegocio.getInstance().Eliminar(idPaciente);
+
+      return ok;
+
     }
 
     protected void btnRegistrar_Click(object sender, EventArgs e)
