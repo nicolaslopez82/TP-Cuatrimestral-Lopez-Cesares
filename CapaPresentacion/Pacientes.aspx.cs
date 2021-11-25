@@ -18,7 +18,7 @@ namespace CapaPresentacion
     {
       if (!Page.IsPostBack)
       {
-        // Page.ClientScript.RegisterClientScriptInclude("Pacientesjs", "js/Pacientes.js");
+       // Page.ClientScript.RegisterClientScriptInclude("Pacientes.js", "javascript/Pacientes.js");
       }
     }
 
@@ -84,8 +84,8 @@ namespace CapaPresentacion
       bool response = PacienteNegocio.getInstance().RegistrarPaciente(objPaciente);
       if (response)
       {
+        clearRegistrarPacienteForm();
         Response.Write("<script>alert('REGISTRO CORRECTO.')</script>");
-
       }
       else
       {
@@ -96,17 +96,28 @@ namespace CapaPresentacion
     private Paciente GetEntity()
     {
       Paciente objPaciente = new Paciente();
-      //objPaciente.IdPaciente = 0;
-      //objPaciente.Nombres = txtNombres.Text;
-      //objPaciente.Apellido = txtApellido.Text;
-      //objPaciente.Edad = Convert.ToInt32(txtEdad.Text);
-      //objPaciente.Sexo = (ddlSexo.SelectedValue == "Femenino") ? 'F' : 'M'; // Masculino , Femenino
-      //objPaciente.NroDocumento = txtNroDocumento.Text;
-      //objPaciente.Direccion = txtDireccion.Text;
-      //objPaciente.Telefono = txtTelefono.Text;
-      //objPaciente.Estado = true;
+      objPaciente.IdPaciente = 0;
+      objPaciente.Nombres = txtNombres.Text;
+      objPaciente.Apellido = txtApellido.Text;
+      objPaciente.Edad = Convert.ToInt32(txtEdad.Text);
+      objPaciente.Sexo = (ddlSexo.SelectedValue == "Femenino") ? 'F' : 'M'; // Masculino , Femenino
+      objPaciente.NroDocumento = txtNroDocumento.Text;
+      objPaciente.Direccion = txtDireccion.Text;
+      objPaciente.Telefono = txtTelefono.Text;
+      objPaciente.Estado = true;
 
       return objPaciente;
+    }
+
+    private void clearRegistrarPacienteForm()
+    {
+      txtNombres.Text = "";
+      txtApellido.Text = "";
+      txtEdad.Text = "";
+      ddlSexo.SelectedValue = "Masculino";
+      txtNroDocumento.Text = "";
+      txtDireccion.Text = "";
+      txtTelefono.Text = "";
     }
   }
 }

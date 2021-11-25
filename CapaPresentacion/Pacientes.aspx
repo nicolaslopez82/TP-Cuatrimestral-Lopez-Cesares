@@ -126,8 +126,8 @@
 
   
 
-  <%--<section class="content">
-    <form id="formRegistro" runat="server">
+  <section class="content">
+    <%--<form id="formRegistro" runat="server">--%>
           <LayoutTemplate>
       <!-- Formulario Registro Paciente Nuevo - INICIO -->      
       <div class="row">
@@ -195,7 +195,7 @@
             <table>
                 <tr>
                     <td>
-                        <asp:Button ID="btnRegistrar" runat="server" CssClass="btn btn-primary" Width="200px" Text="Registrar" OnClientClick="btnRegistrar_Click" />
+                        <asp:Button ID="btnRegistrar" runat="server" CssClass="btn btn-primary" Width="200px" Text="Registrar"  OnClick="btnRegistrar_Click" />                        
                     </td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td>
@@ -205,10 +205,10 @@
             </table>
         </div>
       </LayoutTemplate>
-     </form>
+     <%--</form>--%>
         <!-- Formulario Registro Paciente Nuevo - FIN -->
 
-    </section--%>
+    </section>
   <!-- /.content -->
   
 </asp:Content>

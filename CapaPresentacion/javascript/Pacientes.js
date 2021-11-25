@@ -141,7 +141,6 @@ $(document).on('click', '.btn-edit', function (e) {
   //console.log(dataRow);
   data = dataRow;
   fillModalData();
-
 });
 
 // evento click para boton eliminar

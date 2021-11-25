@@ -416,10 +416,11 @@ BEGIN
       ,[telefono]
       ,[estado]
 	FROM [TPC_Clinica].[dbo].[Paciente]
+	WHERE estado = 1
 END
 GO
 
--- DROP PROCEDURE [SP_BuscarSiExisteUsuarioPorUsuario];
+ -- DROP PROCEDURE [SP_ListarPacientes];
 
 /****** Object:  StoredProcedure [dbo].[SP_ActualizarDatosPaciente] ******/      
 SET ANSI_NULLS ON
@@ -462,5 +463,28 @@ AS
 		UPDATE Paciente
 		SET estado = 0
 		WHERE idPaciente = @prmIdPaciente
+	END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_RegistrarPaciente] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_RegistrarPaciente]
+(
+@prmNombres VARCHAR(50),
+@prmApellido VARCHAR(50),
+@prmEdad INT,
+@prmSexo CHAR(1),
+@prmNroDoc VARCHAR(8), 
+@prmDireccion VARCHAR(150),
+@prmTelefono VARCHAR(20),
+@prmEstado bit
+)
+AS
+	BEGIN
+		INSERT INTO Paciente(nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
+		VALUES(@prmNombres, @prmApellido, @prmEdad, @prmSexo, @prmNroDoc, @prmDireccion, @prmTelefono, @prmEstado);
 	END
 GO
