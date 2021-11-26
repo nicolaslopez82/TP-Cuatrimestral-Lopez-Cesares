@@ -174,7 +174,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Alexander El Grande</a>
         </div>
       </div>
 
@@ -205,19 +205,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="index.aspx" id="nav-pacientes" class="nav-link">                
+                <a href="Pacientes.aspx" id="nav-pacientes" class="nav-link">                
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page Pacientes</p>                
+                  <p>Pacientes</p>                
                 </a>
               </li>
               <li class="nav-item">
-                <a href="Pacientes.aspx" id="nav-medicos" class="nav-link" >
+                <a href="index.aspx" id="nav-medicos" class="nav-link" >
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page Medicos</p>
+                  <p>Medicos</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" id="nav-reservas" class="nav-link">
+                <a href="index.aspx" id="nav-reservas" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Reserva de turnos</p>
                 </a>
@@ -312,6 +312,7 @@
     <script src="js/plugins/datatables/jquery.dataTables.js"></script>
     <script src="js/plugins/datatables/dataTables.bootstrap.js"></script>
     <script src="js/logout.js"></script>
+    <script src="javascript/NavsItems.js" type="text/javascript"></script>
 
 <asp:ContentPlaceHolder ID="footer" runat="server"></asp:ContentPlaceHolder>
 </body>

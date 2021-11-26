@@ -639,6 +639,7 @@
     <Content Include="jAlert\images\warning-icon.png" />
     <Content Include="jAlert\jquery.alerts.css" />
     <Content Include="jAlert\jquery.alerts.js" />
+    <Content Include="javascript\NavsItems.js" />
     <Content Include="javascript\Pacientes.js" />
     <Content Include="js\AdminLTE\app.js" />
     <Content Include="js\AdminLTE\dashboard.js" />

@@ -159,6 +159,7 @@ $(document).on('click', '.btn-delete', function (e) {
 
 });
 
+
 // cargar datos en el modal
 function fillModalData() {
   $('#MainContent_txtNombreActualizar').val(data[1]);
@@ -173,7 +174,7 @@ function fillModalData() {
 // enviar la informacion al servidor
 $("#MainContent_btnActualizarGuardar").click(function (e) {
   e.preventDefault(); 
-  updateDataAjax();
+  updateDataAjax();  
   sendDataAjax();
 });
 

@@ -2,13 +2,14 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+   <!-- /.Datatable Listado Pacientes -->
       <section class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                      <h3 class="card-title">Listado de Pacientes</h3>
+                      <h1 class="card-title">Listado de Pacientes</h1>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -55,12 +56,14 @@
       </div>
       <!-- /.container-fluid -->
   </section>
+   <!-- /.Datatable -->
 
+  <!-- /.Modal Actualizar -->
   <div class="modal fade" id="imodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">          
           <div class="modal-content">          
             <div class="modal-header">
-              <h4 class="modal-title" id="myModalLabel">Actualizar Paciente</h4>
+              <h3 class="modal-title" id="myModalLabel">Actualizar Paciente</h3>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -113,27 +116,24 @@
             
                 <div class="modal-footer justify-content-between">              
                   <asp:Button ID="btnActualizarCancelar" runat="server" class="btn btn-secondary" data-dismiss="modal" Text="Cancelar"/>
-                  <asp:Button ID="btnActualizarGuardar" runat="server" class="btn btn-primary" Text="Actualizar"/>
+                  <asp:Button ID="btnActualizarGuardar" runat="server" class="btn btn-primary" data-dismiss="modal" Text="Actualizar"/>
                 </div>            
           </div>          
           <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
       </div>
-      <!-- /.modal -->  
+  <!-- /.modal -->  
 
-
-
-  
-
+  <!-- /.Registro Pacientes -->
   <section class="content">
     <%--<form id="formRegistro" runat="server">--%>
           <LayoutTemplate>
       <!-- Formulario Registro Paciente Nuevo - INICIO -->      
-      <div class="row">
-        
+      <div class="row">        
             <div class="col-md-6">              
                 <div class="box box-primary">
+                   <h1 class="card-title">Registro de Pacientes</h1>
                     <div class="box-body">
                         <div class="form-group">
                             <label>DOCUMENTO DE IDENTIDAD</label>

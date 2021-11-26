@@ -76,10 +76,18 @@ namespace CapaPresentacion
 
     }
 
+    // Registro del paciente 
     protected void btnRegistrar_Click(object sender, EventArgs e)
     {
-      // Registro del paciente
+           
+      if (!(validarCamposPaciente()))
+      {
+        Response.Write("<script>alert('REGISTRO INCORRECTO, NO PUEDE HABER CAMPOS INCOMPLETOS.')</script>");
+        return;
+      }
+
       Paciente objPaciente = GetEntity();
+
       // enviar a la capa de logica de negocio
       bool response = PacienteNegocio.getInstance().RegistrarPaciente(objPaciente);
       if (response)
@@ -118,6 +126,19 @@ namespace CapaPresentacion
       txtNroDocumento.Text = "";
       txtDireccion.Text = "";
       txtTelefono.Text = "";
+    }
+
+    private bool validarCamposPaciente()
+    {
+      if (txtNombres.Text.Equals("")      || txtNombres.Text == null      ||
+          txtApellido.Text.Equals("")     || txtApellido.Text == null     ||
+          txtEdad.Text.Equals("")         || txtEdad.Text == null         ||
+          ddlSexo.Text.Equals("")         || ddlSexo.Text == null         ||
+          txtNroDocumento.Text.Equals("") || txtNroDocumento.Text == null ||
+          txtDireccion.Text.Equals("")    || txtDireccion.Text == null    ||
+          txtTelefono.Text.Equals("")     || txtTelefono.Text == null)
+      { return false; }
+      else { return true; }
     }
   }
 }
