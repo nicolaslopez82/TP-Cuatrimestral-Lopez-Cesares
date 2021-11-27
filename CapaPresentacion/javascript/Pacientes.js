@@ -124,8 +124,12 @@ function deleteDataAjax(data) {
     success: function (response) {
       if (response.d) {
         alert("Registro eliminado de manera correcta.");
+        // paso 2: renderizar el datatable
+        tabla.ajax.reload(null, false);
       } else {
         alert("No se pudo eliminar el registro.");
+        // paso 2: renderizar el datatable
+        tabla.ajax.reload(null, false);
       }
     }
   });
@@ -153,10 +157,7 @@ $(document).on('click', '.btn-delete', function (e) {
 
   //segundo método: enviar el codigo del paciente al servidor y eliminarlo, renderizar el datatable
   // paso 1: enviar el id al servidor por medio de ajax
-  deleteDataAjax(dataRow[0]);
-  // paso 2: renderizar el datatable
-  sendDataAjax();
-
+  deleteDataAjax(dataRow[0]);  
 });
 
 
@@ -175,8 +176,9 @@ function fillModalData() {
 $("#MainContent_btnActualizarGuardar").click(function (e) {
   e.preventDefault(); 
   updateDataAjax();  
-  sendDataAjax();
+  tabla.ajax.reload(null, false);
 });
+
 
 // Llamando a la funcion de ajax al cargar el documento
 sendDataAjax();
