@@ -63,13 +63,13 @@ namespace CapaNegocio
         {
             try
             {
-                return UsuarioDAO.getInstance().BuscarSiExisteUsuarioPorUsuario(usuario);                
+                return UsuarioDAO.getInstance().BuscarSiExisteUsuarioPorUsuario(usuario);
             }
             catch (Exception e)
             {
                 throw e;
-                
-            }   
+
+            }
         }
 
         public bool RegistrarUsuario(Usuario usuario)
@@ -83,7 +83,20 @@ namespace CapaNegocio
             {
                 return false;
                 throw e;
-            }            
+            }
+        }
+        
+        public List<Usuario> ListarUsuarios()
+        {
+            try
+            {
+                return UsuarioDAO.getInstance().ListarUsuarios();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

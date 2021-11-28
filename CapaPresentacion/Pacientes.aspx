@@ -132,8 +132,9 @@
       <!-- Formulario Registro Paciente Nuevo - INICIO -->      
       <div class="row">        
             <div class="col-md-6">              
-                <div class="box box-primary">
-                   <h1 class="card-title">Registro de Pacientes</h1>
+                <div class="box box-primary">                  
+                   <h5 class="card-title">Registro de Pacientes</h5>                  
+                  <br/>
                     <div class="box-body">
                         <div class="form-group">
                             <label>DOCUMENTO DE IDENTIDAD</label>

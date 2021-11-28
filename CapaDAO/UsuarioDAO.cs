@@ -217,5 +217,51 @@ namespace CapaDAO
 
             return response;
         }
+
+        public List<Usuario> ListarUsuarios()
+        {
+            List<Usuario> Lista = new List<Usuario>();
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+
+            try
+            {
+                con = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("SP_ListarUsuarios", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                con.Open();
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Usuario objUsuario = new Usuario();
+                    //objUsuario.Apellido = (string)dr["apellido"];
+                    //objUsuario.Nombre = (string)dr["nombre"];
+                    //objUsuario.NroDocumento = (string)dr["nroDocumento"];                    
+                    // objUsuario.RUsuario = (string)dr["usuario"];
+                    objUsuario.ID = Convert.ToInt32(dr["idUsuario"].ToString());
+                    objUsuario.Nombre = dr["nombre"].ToString();
+                    objUsuario.Apellido = dr["apellido"].ToString();
+                    objUsuario.NroDocumento = dr["nroDocumento"].ToString();
+                    objUsuario.RUsuario = dr["usuario"].ToString();
+
+                    Lista.Add(objUsuario);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+
+            return Lista;
+        }
     }
 }

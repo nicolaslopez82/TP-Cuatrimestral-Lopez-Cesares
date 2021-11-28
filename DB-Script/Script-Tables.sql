@@ -398,6 +398,7 @@ BEGIN
 END
 GO
 
+/****** Object:  StoredProcedure [dbo].[SP_ListarPacientes] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -487,4 +488,23 @@ AS
 		INSERT INTO Paciente(nombre, apellido, edad, sexo, nroDocumento, direccion, telefono, estado)
 		VALUES(@prmNombres, @prmApellido, @prmEdad, @prmSexo, @prmNroDoc, @prmDireccion, @prmTelefono, @prmEstado);
 	END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_ListarUsuarios] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ListarUsuarios]
+AS
+BEGIN
+	SELECT [idUsuario]
+      ,[idTipoUsuario]
+      ,[nombre]
+      ,[apellido]
+      ,[nroDocumento]      
+      ,[usuario]      
+	FROM [TPC_Clinica].[dbo].[Usuario]
+	WHERE estado = 1
+END
 GO

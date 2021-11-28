@@ -217,6 +217,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="Usuarios.aspx" id="nav-usuarios" class="nav-link" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Usuarios</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="index.aspx" id="nav-reservas" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Reserva de turnos</p>
