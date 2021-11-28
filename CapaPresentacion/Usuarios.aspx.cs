@@ -35,5 +35,80 @@ namespace CapaPresentacion
       }
       return Lista;
     }
+
+    [WebMethod]
+    public static bool ActualizarDatosUsuario(String idUsuario,
+                                                String nombres,
+                                                String apellido,                                      
+                                                String nroDocumento,
+                                                String usuario)
+    {
+      Usuario objUsuario = new Usuario()
+      {
+        ID = Convert.ToInt32(idUsuario),
+        Nombre = nombres,
+        Apellido = apellido,
+        NroDocumento = nroDocumento,
+        RUsuario = usuario
+      };
+
+      bool ok = UsuarioNegocio.getInstance().Actualizar(objUsuario);
+      return ok;
+    }
+
+    [WebMethod]
+    public static bool EliminarUsuario(String idUsuario)
+    {
+      Int32 ID = Convert.ToInt32(idUsuario);
+
+      bool ok = UsuarioNegocio.getInstance().Eliminar(ID);
+
+      return ok;
+
+    }
+
+    //public static AgregarUsuario()
+    //{
+    //  if (UsuarioNombre.Text == "" ||
+    //      UsuarioApellido.Text == "" ||
+    //      UsuarioDNI.Text == "" ||
+    //      UsuarioUser.Text == "" ||
+    //      UsuarioPassword.Text == "" ||
+    //      UsuarioRePassword.Text == "")
+    //  {
+    //    lblError.Text = "Ningun campo puede quedar vacio.";
+    //  }
+    //  else
+    //  {
+    //    if (UsuarioPassword.Text != UsuarioRePassword.Text)
+    //    {
+    //      lblErrorContrasenia.Text = "Las contrasenias no coinciden.";
+    //    }
+    //    else
+    //    {
+    //      bool existeUsuario = UsuarioNegocio.getInstance().BuscarSiExisteUsuarioPorUsuario(UsuarioUser.Text);
+
+    //      if (!existeUsuario)
+    //      {
+    //        TipoUsuario tipoUsuario = new TipoUsuario(3, "Medico", true);
+    //        Usuario usuarioAGuardar = new Usuario(-1, tipoUsuario, UsuarioNombre.Text, UsuarioApellido.Text, UsuarioDNI.Text, true, UsuarioUser.Text, UsuarioPassword.Text);
+    //        bool usuarioAgregado = UsuarioNegocio.getInstance().RegistrarUsuario(usuarioAGuardar);
+    //        if (usuarioAgregado == true)
+    //        {
+    //          //Response.Write("<script>alert('Usuario registrado correctamente.')</script>");
+    //          //Response.Redirect("Login.aspx");
+    //        }
+    //        else
+    //        {
+    //          //Response.Write("<script>alert('Usuario No Registrado.')</script>");
+    //        }
+    //      }
+    //      else
+    //      {
+    //        //Response.Write("<script>alert('Nombre de usuario ya registrado.')</script>");
+    //      }
+    //    }
+    //  }
+    //}
   }
 }

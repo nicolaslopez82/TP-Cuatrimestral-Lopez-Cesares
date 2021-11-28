@@ -98,5 +98,29 @@ namespace CapaNegocio
                 throw ex;
             }
         }
+
+        public bool Actualizar(Usuario objUsuario)
+        {
+            try
+            {
+                return UsuarioDAO.getInstance().Actualizar(objUsuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool Eliminar(int idUsuario)
+        {
+            try
+            {
+                return UsuarioDAO.getInstance().Eliminar(idUsuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

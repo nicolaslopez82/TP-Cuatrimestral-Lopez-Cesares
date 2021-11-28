@@ -236,10 +236,6 @@ namespace CapaDAO
                 while (dr.Read())
                 {
                     Usuario objUsuario = new Usuario();
-                    //objUsuario.Apellido = (string)dr["apellido"];
-                    //objUsuario.Nombre = (string)dr["nombre"];
-                    //objUsuario.NroDocumento = (string)dr["nroDocumento"];                    
-                    // objUsuario.RUsuario = (string)dr["usuario"];
                     objUsuario.ID = Convert.ToInt32(dr["idUsuario"].ToString());
                     objUsuario.Nombre = dr["nombre"].ToString();
                     objUsuario.Apellido = dr["apellido"].ToString();
@@ -259,9 +255,70 @@ namespace CapaDAO
             {
                 con.Close();
             }
-
-
             return Lista;
+        }
+
+        public bool Actualizar(Usuario objUsuario)
+        {
+            bool ok = false;
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("SP_ActualizarDatosUsuario", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmIdUsuario", objUsuario.ID);
+                cmd.Parameters.AddWithValue("@prmNombre", objUsuario.Nombre);
+                cmd.Parameters.AddWithValue("@prmApellido", objUsuario.Apellido);
+                cmd.Parameters.AddWithValue("@prmNroDocumento", objUsuario.NroDocumento);
+                cmd.Parameters.AddWithValue("@prmUsuario", objUsuario.RUsuario);         
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                ok = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return ok;
+        }
+
+        public bool Eliminar(int idUsuario)
+        {
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+            bool ok = false;
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("SP_EliminarUsuario", conexion);
+                cmd.Parameters.AddWithValue("@prmIdUsuario", idUsuario);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                ok = true;
+
+            }
+            catch (Exception ex)
+            {
+                ok = false;
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return ok;
         }
     }
 }

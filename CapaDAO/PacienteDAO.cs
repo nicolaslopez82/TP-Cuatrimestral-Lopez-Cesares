@@ -44,8 +44,7 @@ namespace CapaDAO
                     objPaciente.IdPaciente = Convert.ToInt32(dr["idPaciente"].ToString());
                     objPaciente.Nombres = dr["nombre"].ToString();
                     objPaciente.Apellido = dr["apellido"].ToString();
-                    objPaciente.Edad = Convert.ToInt32(dr["edad"].ToString());
-                    //objPaciente.Sexo = Convert.ToChar(dr["sexo"].ToString());
+                    objPaciente.Edad = Convert.ToInt32(dr["edad"].ToString());                    
                     objPaciente.Sexo = Convert.ToChar(dr["sexo"]);
                     objPaciente.NroDocumento = dr["nroDocumento"].ToString();
                     objPaciente.Direccion = dr["direccion"].ToString();

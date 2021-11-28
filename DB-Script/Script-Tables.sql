@@ -320,6 +320,44 @@ GO
 
 --DROP PROCEDURE [SP_AgregarUsuario];  
 
+/****** Object:  StoredProcedure [dbo].[SP_ActualizarDatosUsuario] ******/      
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ActualizarDatosUsuario]
+(@prmIdUsuario int,
+@prmNombre varchar(50),
+@prmApellido varchar(20),
+@prmNroDocumento varchar(8),
+@prmUsuario varchar(50))
+AS
+	BEGIN
+		update Usuario
+		set Usuario.nombre = @prmNombre,
+		Usuario.apellido = @prmApellido,		
+		Usuario.nroDocumento = @prmNroDocumento		
+		WHERE Usuario.idUsuario = @prmIdUsuario
+	END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_EliminarUsuario] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_EliminarUsuario]
+(@prmIdUsuario int)
+AS
+	BEGIN
+		UPDATE Usuario
+		SET estado = 0
+		WHERE idUsuario = @prmIdUsuario
+	END
+GO
+
+-- DROP PROCEDURE [SP_ActualizarDatosUsuario];
+
 /****** Object:  StoredProcedure [dbo].[SP_ValidarUsuario] ******/
 SET ANSI_NULLS ON
 GO
@@ -508,3 +546,4 @@ BEGIN
 	WHERE estado = 1
 END
 GO
+
