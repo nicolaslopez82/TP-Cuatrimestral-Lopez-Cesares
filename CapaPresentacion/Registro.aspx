@@ -69,7 +69,7 @@
                             </div>
                           </div>
                           <div class="input-group mb-3">
-                           <asp:TextBox ID="RegisterRePassword" runat="server" CssClass="form-control" placeholder="Reingrese password..." TextMode="Password"></asp:TextBox>
+                           <asp:TextBox ID="RegisterRePassword" runat="server" CssClass="form-control" placeholder="Confirme password..." TextMode="Password"></asp:TextBox>
                             <div class="input-group-append">
                               <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

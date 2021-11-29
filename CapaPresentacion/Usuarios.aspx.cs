@@ -67,48 +67,111 @@ namespace CapaPresentacion
 
     }
 
-    //public static AgregarUsuario()
-    //{
-    //  if (UsuarioNombre.Text == "" ||
-    //      UsuarioApellido.Text == "" ||
-    //      UsuarioDNI.Text == "" ||
-    //      UsuarioUser.Text == "" ||
-    //      UsuarioPassword.Text == "" ||
-    //      UsuarioRePassword.Text == "")
-    //  {
-    //    lblError.Text = "Ningun campo puede quedar vacio.";
-    //  }
-    //  else
-    //  {
-    //    if (UsuarioPassword.Text != UsuarioRePassword.Text)
-    //    {
-    //      lblErrorContrasenia.Text = "Las contrasenias no coinciden.";
-    //    }
-    //    else
-    //    {
-    //      bool existeUsuario = UsuarioNegocio.getInstance().BuscarSiExisteUsuarioPorUsuario(UsuarioUser.Text);
+    // Registro del Usuario 
+    protected void btnRegistrar_Click(object sender, EventArgs e)
+    {
 
-    //      if (!existeUsuario)
-    //      {
-    //        TipoUsuario tipoUsuario = new TipoUsuario(3, "Medico", true);
-    //        Usuario usuarioAGuardar = new Usuario(-1, tipoUsuario, UsuarioNombre.Text, UsuarioApellido.Text, UsuarioDNI.Text, true, UsuarioUser.Text, UsuarioPassword.Text);
-    //        bool usuarioAgregado = UsuarioNegocio.getInstance().RegistrarUsuario(usuarioAGuardar);
-    //        if (usuarioAgregado == true)
-    //        {
-    //          //Response.Write("<script>alert('Usuario registrado correctamente.')</script>");
-    //          //Response.Redirect("Login.aspx");
-    //        }
-    //        else
-    //        {
-    //          //Response.Write("<script>alert('Usuario No Registrado.')</script>");
-    //        }
-    //      }
-    //      else
-    //      {
-    //        //Response.Write("<script>alert('Nombre de usuario ya registrado.')</script>");
-    //      }
-    //    }
-    //  }
-    //}
+      if (TieneCamposVacios())
+      {
+        Response.Write("<script>alert('Registro de usuario incorrecto, no pueden haber campos incompletos.')</script>");
+        return;
+      }
+
+      if (!(MismaConfirmarPassword()))
+      {
+        Response.Write("<script>alert('Las contrasenias no coinciden.')</script>");
+        return;
+      }
+
+      if (EsUsuarioExistente())
+      {
+        Response.Write("<script>alert('Nombre de usuario ya registrado.')</script>");
+        return;
+      }
+
+      Usuario objUsuario = GetEntity();
+
+      bool usuarioAgregado = UsuarioNegocio.getInstance().RegistrarUsuario(objUsuario);
+      if (usuarioAgregado == true)
+      {
+        Response.Write("<script>alert('Usuario registrado correctamente.')</script>");
+        Response.Redirect("Usuarios.aspx");
+        return;
+      }
+      else
+      {
+        Response.Write("<script>alert('Usuario No Registrado.')</script>");
+        return;
+      }
+    }
+
+    private Usuario GetEntity()
+    {
+      Usuario objUsuario = new Usuario();
+
+      switch (ddlTipoUsuario.SelectedValue)
+      {
+        case "Administrador":
+          objUsuario.RTipoUsuario.ID = 1;
+          break;
+
+        case "Recepcionista":
+          objUsuario.RTipoUsuario.ID = 2;
+          break;
+
+        case "Medico":
+          objUsuario.RTipoUsuario.ID = 3;
+          break;
+
+        default:
+          objUsuario.RTipoUsuario.ID = 3;
+          break;
+      }
+      
+      objUsuario.Nombre = txtNombres.Text;
+      objUsuario.Apellido = txtApellido.Text;            
+      objUsuario.NroDocumento = txtNroDocumento.Text;
+      objUsuario.RUsuario = txtUsuario.Text;
+      objUsuario.Contrasenia = txtPassword.Text;      
+      objUsuario.Estado = true;
+
+      return objUsuario;
+    }
+
+    private bool TieneCamposVacios()
+    {
+      if (txtNombres.Text == "" ||
+          txtApellido.Text == "" ||
+          txtNroDocumento.Text == "" ||
+          txtUsuario.Text == "" ||
+          txtPassword.Text == "" ||
+          txtConfirmarPassword.Text == "")
+      {return true;}
+      else 
+      {return false;}
+    }
+
+    private bool MismaConfirmarPassword()
+    {
+      if (txtPassword.Text.Equals(txtConfirmarPassword)) {return true;}
+      else { return true;}
+    }
+
+    private bool EsUsuarioExistente()   
+    {
+      bool existeUsuario = UsuarioNegocio.getInstance().BuscarSiExisteUsuarioPorUsuario(txtUsuario.Text);
+      return existeUsuario;
+    }
+
+    private void LimpiarCamposRegistroUsuarios()
+    {
+      //ddlTipoUsuario.SelectedValue = "Medico";
+      txtNombres.Text = "";
+      txtApellido.Text = "";
+      txtNroDocumento.Text = "";
+      txtUsuario.Text = "";
+      txtPassword.Text = "";
+      txtConfirmarPassword.Text = "";
+    }
   }
 }

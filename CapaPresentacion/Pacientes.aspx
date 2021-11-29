@@ -140,19 +140,19 @@
                             <label>DOCUMENTO DE IDENTIDAD</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtNroDocumento" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtNroDocumento" runat="server" Text="" CssClass="form-control" placeholder="Ingrese DNI..."></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <label>NOMBRES</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtNombres" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtNombres" runat="server" Text="" CssClass="form-control" placeholder="Ingrese Nombres..."></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <label>APELLIDO</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtApellido" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtApellido" runat="server" Text="" CssClass="form-control" placeholder="Ingrese Apellido..."></asp:TextBox>
                         </div>                        
                     </div>
                 </div>
@@ -173,19 +173,19 @@
                             <label>EDAD</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtEdad" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtEdad" runat="server" Text="" CssClass="form-control" placeholder="Ingrese Edad..."></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <label>TELEFONO</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtTelefono" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtTelefono" runat="server" Text="" CssClass="form-control" placeholder="Ingrese Telefono..."></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <label>DIRECCION</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtDireccion" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                            <asp:TextBox ID="txtDireccion" runat="server" Text="" CssClass="form-control" placeholder="Ingrese Direccion..."></asp:TextBox>
                         </div>
                     </div>
                 </div>
