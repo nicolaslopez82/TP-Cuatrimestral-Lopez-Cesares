@@ -16,35 +16,32 @@ namespace CapaPresentacion
 {
   public partial class Login : System.Web.UI.Page
   {
-    
+
     protected void Page_Load(object sender, EventArgs e)
     {
-      if (!Page.IsPostBack)
+      if (this.Page.User.Identity.IsAuthenticated)
       {
-        Session["UserSessionId"] = null;
+        Response.Redirect(FormsAuthentication.DefaultUrl);
       }
     }
 
-    protected void LoginUser_Authenticate(object sender, EventArgs e)
+      protected void LoginUser_Authenticate(object sender, EventArgs e)
     {
      
         Usuario usuario = UsuarioNegocio.getInstance().AccesoSistema(Login1.UserName, Login1.Password);
 
         if (usuario != null)
         {
-          SessionIDManager manager = new SessionIDManager();
-          //SessionManager.UserSessionId = objEmpleado.ID.ToString();
-          bool redirected = false;
-          bool isAdded = false;
-          string newID = manager.CreateSessionID(Context);
-          manager.SaveSessionID(Context, newID, out redirected, out isAdded);          
-          FormsAuthentication.RedirectFromLoginPage(Login1.UserName, false);
-          Response.Redirect("index.aspx");
+          Session.Add("usuario", usuario);        
+          Session.Add("userName", usuario.RUsuario);
+          Response.Redirect("Pacientes.aspx", false);     
         }
         else
         {
           Response.Write("<script>alert('Usuario y/o Password incorrecto.')</script>");
-        }    
+          Session.Add("error", "user o pass incorrectos");
+          Response.Redirect("../Error.aspx", false);
+      }    
     }
 
   }

@@ -9,11 +9,16 @@ namespace CapaPresentacion
   {
     protected void Page_Load(object sender, EventArgs e)
     {
+
+      if (Session["usuario"] != null)
+      {
+        Session.Add("error", "Debes desloguearte para registrarte un nuevo usuario.");
+        Response.Redirect("Login.aspx", false);
+      }
+
       //TODO Checkear este if.
       if (!Page.IsPostBack)
-      {
-        Session["UserSessionId"] = null;
-      }
+      {}
 
       lblError.Text = "";
       lblErrorContrasenia.Text = "";      

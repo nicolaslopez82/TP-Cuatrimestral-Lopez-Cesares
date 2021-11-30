@@ -423,6 +423,7 @@
     <Content Include="docs\_includes\sidebar.html" />
     <Content Include="docs\_layouts\default.html" />
     <Content Include="docs\_layouts\page.html" />
+    <Content Include="Error.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -639,6 +640,8 @@
     <Content Include="jAlert\images\warning-icon.png" />
     <Content Include="jAlert\jquery.alerts.css" />
     <Content Include="jAlert\jquery.alerts.js" />
+    <Content Include="javascript\Logout.js" />
+    <Content Include="javascript\Medicos.js" />
     <Content Include="javascript\NavsItems.js" />
     <Content Include="javascript\Pacientes.js" />
     <Content Include="javascript\Usuarios.js" />
@@ -2811,6 +2814,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
