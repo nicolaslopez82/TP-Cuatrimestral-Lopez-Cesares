@@ -1,3 +1,4 @@
+//WIP
 $(document).on('click', '#close', function (e) {
   e.preventDefault();
 
