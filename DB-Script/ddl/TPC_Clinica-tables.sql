@@ -1,45 +1,11 @@
+/* === Create Database ===*/
 /****** Object:  Database [TPC-Clinica] ******/
 CREATE DATABASE [TPC_Clinica]
 GO
 USE [TPC_Clinica]
 GO
 
-/****** Object:  Table [dbo].[Reserva] ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING ON
-GO
-CREATE TABLE [dbo].[Reserva](
-	[idReserva] [int] IDENTITY(1,1) NOT NULL,
-	[idMedico] [int] NOT NULL,
-	[idPaciente] [int] NOT NULL,
-	[fechaReserva] [datetime] NULL,
-	[observacion] [varchar](350) NULL,
-	[estado] [char](1) NULL,
-	[hora] [varchar](6) NULL,
- CONSTRAINT [PK_Reserva] PRIMARY KEY CLUSTERED 
-([idReserva] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
-GO
-SET ANSI_PADDING OFF
-GO
-
-/****** Object:  Table [dbo].[DiaSemana] ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING ON
-GO
-CREATE TABLE [dbo].[DiaSemana](
-	[idDiaSemana] [int] IDENTITY(1,1) NOT NULL,
-	[nombreDiaSemana] [varchar](50) NULL,
- CONSTRAINT [PK_DiaSemana] PRIMARY KEY CLUSTERED 
-([idDiaSemana] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
-GO
-SET ANSI_PADDING OFF
-GO
+/* === Create Tables ===*/
 
 /****** Object:  Table [dbo].[Usuario] ******/
 SET ANSI_NULLS ON
@@ -63,69 +29,19 @@ GO
 SET ANSI_PADDING OFF
 GO
 
-/****** Object:  Table [dbo].[Especialidad] ******/
+/****** Object:  Table [dbo].[TipoUsuario] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-CREATE TABLE [dbo].[Especialidad](
-	[idEspecialidad] [int] IDENTITY(1,1) NOT NULL,
+CREATE TABLE [dbo].[TipoUsuario](
+	[idTipoUsuario] [int] IDENTITY(1,1) NOT NULL,
 	[descripcion] [varchar](25) NULL,
 	[estado] [bit] NULL,
- CONSTRAINT [PK_Especialidad] PRIMARY KEY CLUSTERED ([idEspecialidad] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-SET ANSI_PADDING OFF
-GO
-
-/****** Object:  Table [dbo].[Hora] ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_PADDING ON
-GO
-CREATE TABLE [dbo].[Hora](
-	[idHora] [int] IDENTITY(1,1) NOT NULL,
-	[hora] [varchar](6) NULL,
- CONSTRAINT [PK_Hora] PRIMARY KEY CLUSTERED 
-([idHora] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
-GO
-SET ANSI_PADDING OFF
-GO
-
-/****** Object:  Table [dbo].[HorarioAtencion] ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[HorarioAtencion](
-	[idHorarioAtencion] [int] IDENTITY(1,1) NOT NULL,
-	[idMedico] [int] NOT NULL,
-	[idHoraInicio] [int] NOT NULL,
-	[fecha] [datetime] NULL,
-	[fechaFin] [date] NULL,
-	[estado] [bit] NULL,
-	[idDiaSemana] [int] NULL,
- CONSTRAINT [PK_HorarioAtencion] PRIMARY KEY CLUSTERED 
-([idHorarioAtencion] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
-GO
-
-/****** Object:  Table [dbo].[Medico] ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Medico](
-	[idMedico] [int] IDENTITY(1,1) NOT NULL,
-	[idUsuario] [int] NOT NULL,
-	[idEspecialidad] [int] NOT NULL,
-	[estado] [bit] NULL,
- CONSTRAINT [PK_Medico] PRIMARY KEY CLUSTERED 
-([idMedico] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
-GO
+ CONSTRAINT [PK_TipoUsuario] PRIMARY KEY CLUSTERED 
+([idTipoUsuario] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
 
 /****** Object:  Table [dbo].[Paciente] ******/
 SET ANSI_NULLS ON
@@ -149,42 +65,91 @@ CREATE TABLE [dbo].[Paciente](
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[Permisos] ******/
+
+/****** Object:  Table [dbo].[Medico] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Permisos](
+CREATE TABLE [dbo].[Medico](
+	[idMedico] [int] IDENTITY(1,1) NOT NULL,
 	[idUsuario] [int] NOT NULL,	
-	[estado] [bit] NOT NULL,
-CONSTRAINT [PK_Permisos] PRIMARY KEY CLUSTERED ([idUsuario] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
+	[estado] [bit] NULL,
+ CONSTRAINT [PK_Medico] PRIMARY KEY CLUSTERED 
+([idMedico] ASC) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TipoEmpleado] ******/
+
+/****** Object:  Table [dbo].[MedicoEspecialidad] ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-CREATE TABLE [dbo].[TipoUsuario](
-	[idTipoUsuario] [int] IDENTITY(1,1) NOT NULL,
+CREATE TABLE [dbo].[MedicoEspecialidad](
+	[idEspecialidad] [int] IDENTITY(1,1) NOT NULL,
+	[idMedico] [int] NOT NULL	
+ CONSTRAINT [PK_EspecialidadMedico] PRIMARY KEY CLUSTERED 
+([idEspecialidad], [idMedico] ASC) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+
+/****** Object:  Table [dbo].[Especialidad] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Especialidad](
+	[idEspecialidad] [int] IDENTITY(1,1) NOT NULL,
 	[descripcion] [varchar](25) NULL,
 	[estado] [bit] NULL,
- CONSTRAINT [PK_TipoEmpleado] PRIMARY KEY CLUSTERED 
-([idTipoUsuario] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
+ CONSTRAINT [PK_Especialidad] PRIMARY KEY CLUSTERED 
+([idEspecialidad] ASC) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
+GO
+SET ANSI_PADDING OFF
+GO
+
+/****** Object:  Table [dbo].[HorarioDisponible] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HorarioDisponible](
+	[idHorarioDisponible] [int] IDENTITY(1,1) NOT NULL,
+	[idMedico] [int] NOT NULL,	
+	[fechaHorarioDisponible] [datetime] NULL,	
+	[estado] [bit] NULL	
+ CONSTRAINT [PK_HorarioAtencion] PRIMARY KEY CLUSTERED 
+([idHorarioDisponible] ASC) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
+GO
 
 
+/****** Object:  Table [dbo].[Reserva] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Reserva](
+	[idReserva] [int] IDENTITY(1,1) NOT NULL,
+	[idHorarioDisponible] [int] NOT NULL,
+	[idMedico] [int] NOT NULL,
+	[idPaciente] [int] NOT NULL,
+	[fechaCreacionReserva] [datetime] NULL,
+	[observacion] [varchar](350) NULL,
+	[estado] [char](1) NULL	
+ CONSTRAINT [PK_Reserva] PRIMARY KEY CLUSTERED 
+([idReserva] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Reserva] OFF
 
-ALTER TABLE [dbo].[Reserva]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_Medico] FOREIGN KEY([idMedico])
-REFERENCES [dbo].[Medico] ([idMedico])
-GO
-ALTER TABLE [dbo].[Reserva] CHECK CONSTRAINT [FK_Reserva_Medico]
-GO
-ALTER TABLE [dbo].[Reserva]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_Paciente] FOREIGN KEY([idPaciente])
-REFERENCES [dbo].[Paciente] ([idPaciente])
-GO
-ALTER TABLE [dbo].[Reserva] CHECK CONSTRAINT [FK_Reserva_Paciente]
-GO
+/* === Alter Tables ===*/
 
 ALTER TABLE [dbo].[Usuario]  WITH CHECK ADD  CONSTRAINT [FK_Usuario_TipoUsuario] FOREIGN KEY([idTipoUsuario])
 REFERENCES [dbo].[TipoUsuario] ([idTipoUsuario])
@@ -192,33 +157,68 @@ GO
 ALTER TABLE [dbo].[Usuario] CHECK CONSTRAINT [FK_Usuario_TipoUsuario]
 GO
 
-ALTER TABLE [dbo].[HorarioAtencion]  WITH CHECK ADD  CONSTRAINT [FK_HorarioAtencion_DiaSemana] FOREIGN KEY([idDiaSemana])
-REFERENCES [dbo].[DiaSemana] ([idDiaSemana])
-GO
+--
 
-ALTER TABLE [dbo].[HorarioAtencion] CHECK CONSTRAINT [FK_HorarioAtencion_DiaSemana]
-GO
-ALTER TABLE [dbo].[HorarioAtencion]  WITH CHECK ADD  CONSTRAINT [FK_HorarioAtencion_Hora] FOREIGN KEY([idHoraInicio])
-REFERENCES [dbo].[Hora] ([idHora])
-GO
-ALTER TABLE [dbo].[HorarioAtencion] CHECK CONSTRAINT [FK_HorarioAtencion_Hora]
-GO
-ALTER TABLE [dbo].[HorarioAtencion]  WITH CHECK ADD  CONSTRAINT [FK_HorarioAtencion_Medico] FOREIGN KEY([idMedico])
+ALTER TABLE [dbo].[Reserva]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_Medico] FOREIGN KEY([idMedico])
 REFERENCES [dbo].[Medico] ([idMedico])
 GO
-ALTER TABLE [dbo].[HorarioAtencion] CHECK CONSTRAINT [FK_HorarioAtencion_Medico]
+
+ALTER TABLE [dbo].[Reserva] CHECK CONSTRAINT [FK_Reserva_Medico]
 GO
 
+ALTER TABLE [dbo].[Reserva]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_Paciente] FOREIGN KEY([idPaciente])
+REFERENCES [dbo].[Paciente] ([idPaciente])
+GO
+
+ALTER TABLE [dbo].[Reserva] CHECK CONSTRAINT [FK_Reserva_Paciente]
+GO
+
+ALTER TABLE [dbo].[Reserva]  WITH CHECK ADD  CONSTRAINT [FK_Reserva_HorarioDisponible] FOREIGN KEY([idHorarioDisponible])
+REFERENCES [dbo].[HorarioDisponible] ([idHorarioDisponible])
+GO
+
+ALTER TABLE [dbo].[Reserva] CHECK CONSTRAINT [FK_Reserva_HorarioDisponible]
+GO
+
+--
+
+GO
+ALTER TABLE [dbo].[HorarioDisponible]  WITH CHECK ADD  CONSTRAINT [FK_HorarioDisponible_Medico] FOREIGN KEY([idMedico])
+REFERENCES [dbo].[Medico] ([idMedico])
+GO
+
+--
+
+GO
 ALTER TABLE [dbo].[Medico]  WITH CHECK ADD  CONSTRAINT [FK_Medico_Usuario] FOREIGN KEY([idUsuario])
 REFERENCES [dbo].[Usuario] ([idUsuario])
 GO
+
+GO
 ALTER TABLE [dbo].[Medico] CHECK CONSTRAINT [FK_Medico_Usuario]
 GO
-ALTER TABLE [dbo].[Medico]  WITH CHECK ADD  CONSTRAINT [FK_Medico_Especialidad] FOREIGN KEY([idEspecialidad])
+
+--
+
+GO
+ALTER TABLE [dbo].[MedicoEspecialidad]  WITH CHECK ADD  CONSTRAINT [FK_Medico_Especialidad] FOREIGN KEY([idMedico])
+REFERENCES [dbo].[Medico] ([idMedico])
+GO
+
+GO
+ALTER TABLE [dbo].[MedicoEspecialidad] CHECK CONSTRAINT [FK_Medico_Especialidad]
+GO
+
+
+GO
+ALTER TABLE [dbo].[MedicoEspecialidad]  WITH CHECK ADD  CONSTRAINT [FK_Especialidad_Medico] FOREIGN KEY([idEspecialidad])
 REFERENCES [dbo].[Especialidad] ([idEspecialidad])
 GO
-ALTER TABLE [dbo].[Medico] CHECK CONSTRAINT [FK_Medico_Especialidad]
+
 GO
+ALTER TABLE [dbo].[MedicoEspecialidad] CHECK CONSTRAINT [FK_Especialidad_Medico]
+GO
+--
 
 SET ANSI_PADDING OFF
 GO
