@@ -1,8 +1,8 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Reserva.aspx.cs" Inherits="CapaPresentacion.Reserva" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
   <!-- Stylesheets here -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap.min.css" />
-    <style type="text/css">
+    <%--<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.0/css/bootstrap.min.css" />--%>
+    <%--<style type="text/css">
       .bs-docs-example {
         position: relative;
         margin: 15px 0;
@@ -34,7 +34,7 @@
         cursor: wait;
         background: url('javascript/jcd/res/ajax-loader.gif') 85% center no-repeat transparent;
       }
-    </style>
+    </style>--%>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shCore.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/styles/shThemeDefault.css" />
 </asp:Content>
@@ -142,92 +142,18 @@
   <script src="javascript/Reserva.js" type="text/javascript"></script>
 
   <!-- Scripts here -->
-    <script type="a6016c815b9ee7e458bf455a-text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-    <script type="a6016c815b9ee7e458bf455a-text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/2.3.0/knockout-min.js"></script>
-    <script type="a6016c815b9ee7e458bf455a-text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mockjax/1.6.1/jquery.mockjax.min.js"></script>
-    <script type="a6016c815b9ee7e458bf455a-text/javascript" src="javascript/jcd/res/ajax-mocks.js"></script>
-    <script type="a6016c815b9ee7e458bf455a-text/javascript" src="javascript/jcd/dist/jquery.cascadingdropdown.min.js"></script>
-    <script type="a6016c815b9ee7e458bf455a-text/javascript">
-      function viewmodel() {
-        this.phones = ko.observableArray([]);
-        this.loading = ko.observable(false);
-      }
-      
-      var example2 = new viewmodel()
-      
-      ko.applyBindings(example2, document.getElementById('example2'));     
-      
-
-      // Example 2
-      $('#example2').cascadingDropdown({
-        selectBoxes: [
-          {
-            selector: '.step1',
-            source: [
-              { label: '4.0"', value: 4 },
-              { label: '4.3"', value: 4.3 },
-              { label: '4.7"', value: 4.7 },
-              { label: '5.0"', value: 5 }
-            ]
-          },
-          {
-            selector: '.step2',
-            requires: ['.step1'],
-            source: function(request, response) {
-              $.getJSON('/api/resolutions', request, function(data) {
-                var selectOnlyOption = data.length <= 1;
-                response(
-                  $.map(data, function(item, index) {
-                    return {
-                      label: item + 'p',
-                      value: item,
-                      selected: selectOnlyOption
-                    };
-                  })
-                );
-              });
-            }
-          },
-          {
-            selector: '.step3',
-            requires: ['.step1', '.step2'],
-            requireAll: true,
-            source: function(request, response) {
-              $.getJSON('/api/storages', request, function(data) {
-                response(
-                  $.map(data, function(item, index) {
-                    return {
-                      label: item + ' GB',
-                      value: item,
-                      selected: index == 0
-                    };
-                  })
-                );
-              });
-            },
-            onChange: function(event, value, requiredValues, requirementsMet) {
-              if (!requirementsMet) return;
-
-              example2.loading(true);
-
-              var ajaxData = requiredValues;
-              ajaxData[this.el.attr('name')] = value;
-              $.getJSON('/api/phones', ajaxData, function(data) {
-                example2.phones(data);
-                example2.loading(false);
-              });
-            }
-          }
-        ]
-      });
-      
-    </script>
-    <script type="a6016c815b9ee7e458bf455a-text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js"></script>
-    <script type="a6016c815b9ee7e458bf455a-text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js"></script>
-    <script type="a6016c815b9ee7e458bf455a-text/javascript">
+    <script type="jcd-text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+    <script type="jcd-text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/2.3.0/knockout-min.js"></script>
+    <script type="jcd-text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mockjax/1.6.1/jquery.mockjax.min.js"></script>
+    <script type="jcd-text/javascript" src="javascript/jcd/res/ajax-mocks.js"></script>
+    <script type="jcd-text/javascript" src="javascript/jcd/dist/jquery.cascadingdropdown.min.js"></script>
+    <script type="jcd-text/javascript" src="javascript/jcd/jcd.js"></script>
+    <script type="jcd-text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shCore.js"></script>
+    <script type="jcd-text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/SyntaxHighlighter/3.0.83/scripts/shBrushJScript.js"></script>
+    <script type="jcd-text/javascript">
       SyntaxHighlighter.all();
     </script>
-  <script src="javascript/jcd/res/rocket-loader.min.js" data-cf-settings="a6016c815b9ee7e458bf455a-|49" defer=""></script>
-  <script src="javascript/jcd/res/rocket-loader.min.js" data-cf-settings="a6016c815b9ee7e458bf455a-|49" defer=""></script>
+  <script src="javascript/jcd/res/rocket-loader.min.js" data-cf-settings="jcd-|49" defer=""></script>
+  <script src="javascript/jcd/res/rocket-loader.min.js" data-cf-settings="jcd-|49" defer=""></script>
 
 </asp:Content>
