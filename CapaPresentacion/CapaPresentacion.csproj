@@ -2918,6 +2918,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="javascript\jcd\dist\" />
+    <Folder Include="javascript\jcd\res\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
