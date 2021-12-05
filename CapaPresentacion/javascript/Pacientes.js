@@ -7,9 +7,9 @@ function templateRow() {
   template += ("<td>" + "123" + "</td>");
   template += ("<td>" + 'M' + "</td>");
   template += ("<td>" + "123" + "</td>");
-  template += ("<td>" + "123" + "</td>");  
-  template += ("<td>" + "123" + "</td>");  
-  template += ("<td>" + "123" + "</td>");  
+  template += ("<td>" + "123" + "</td>");
+  template += ("<td>" + "123" + "</td>");
+  template += ("<td>" + "123" + "</td>");
   template += "</tr>";
   return template;
 }
@@ -33,10 +33,10 @@ function addRowDT(data) {
       null,
       null,
       null,
-      null,    
-      null,    
-      null,               
-      null,               
+      null,
+      null,
+      null,
+      null,
       { "bSortable": false }
     ]
   });
@@ -53,9 +53,10 @@ function addRowDT(data) {
       data[i].Sexo = 'M' ? "Masculino" : "Femenino",
       data[i].NroDocumento,
       data[i].Direccion,
-      data[i].Telefono,                                
+      data[i].Telefono,
       '<button type="button" value="Actualizar" title="Actualizar" class="btn btn-primary btn-block btn-sm btn-edit" data-target="#imodal" data-toggle="modal"><i class="fa fa-book"></i>  Actualizar</button>' +
-      '<button type="button" value="Eliminar" title="Eliminar" class="btn btn-danger btn-block btn-sm btn-delete"><i class="fa fa-book"></i>  Eliminar</button>'      
+      '<button type="button" value="Eliminar" title="Eliminar" class="btn btn-danger btn-block btn-sm btn-delete"><i class="fa fa-book"></i>  Eliminar</button>' +
+      '<button type="button" value="Reservar" title="Reservar" class="btn btn-warning btn-block btn-sm btn-update"><i class="fa fa-book"></i>  Reservar</button>'
     ]);
   }
   //  ((data[i].Estado == true) ? "Activo" : "Inactivo")
@@ -108,6 +109,7 @@ function updateDataAjax() {
   });
 }
 
+
 function deleteDataAjax(data) {
 
   var obj = JSON.stringify({ id: JSON.stringify(data) });
@@ -124,16 +126,37 @@ function deleteDataAjax(data) {
     success: function (response) {
       if (response.d) {
         alert("Registro eliminado de manera correcta.");
-        // paso 2: renderizar el datatable
-        tabla.ajax.reload(null, false);
       } else {
         alert("No se pudo eliminar el registro.");
-        // paso 2: renderizar el datatable
-        tabla.ajax.reload(null, false);
       }
     }
   });
 }
+
+function RedirectReserva(data) {
+
+  var obj = JSON.stringify({
+    id: JSON.stringify(data[0]),
+    nombres: JSON.stringify(data[1]),
+    apellido: JSON.stringify(data[2]),
+    edad: JSON.stringify(data[3]),
+    sexo: JSON.stringify(data[4]),
+    nroDocumento: JSON.stringify(data[5]),
+    direccion: JSON.stringify(data[6]),
+    telefono: JSON.stringify(data[7])
+  });
+
+  $.ajax({
+    type: "POST",
+    url: "Reserva.aspx/CargarSession",
+    data: obj,
+    dataType: "json",
+    contentType: 'application/json; charset=utf-8'
+
+  });
+  window.location.replace("Reserva.aspx");
+}
+
 
 
 // evento click para boton actualizar
@@ -145,6 +168,7 @@ $(document).on('click', '.btn-edit', function (e) {
   //console.log(dataRow);
   data = dataRow;
   fillModalData();
+
 });
 
 // evento click para boton eliminar
@@ -157,7 +181,23 @@ $(document).on('click', '.btn-delete', function (e) {
 
   //segundo método: enviar el codigo del paciente al servidor y eliminarlo, renderizar el datatable
   // paso 1: enviar el id al servidor por medio de ajax
-  deleteDataAjax(dataRow[0]);  
+  deleteDataAjax(dataRow[0]);
+  // paso 2: renderizar el datatable
+  sendDataAjax();
+
+});
+
+
+//Evento click reserver
+$(document).on('click', '.btn-update', function (e) {
+  e.preventDefault();
+
+  var row = $(this).parent().parent()[0];
+  var dataRow = tabla.fnGetData(row);
+  //console.log(dataRow);
+  data = dataRow;
+  RedirectReserva(data);
+
 });
 
 
@@ -169,16 +209,15 @@ function fillModalData() {
   $('#MainContent_txtSexoActualizar').val(data[4]);
   $('#MainContent_txtNroDocumentoActualizar').val(data[5]);
   $('#MainContent_txtDireccionActualizar').val(data[6]);
-  $('#MainContent_txtTelefonoActualizar').val(data[7]);  
+  $('#MainContent_txtTelefonoActualizar').val(data[7]);
 }
 
 // enviar la informacion al servidor
 $("#MainContent_btnActualizarGuardar").click(function (e) {
-  e.preventDefault(); 
-  updateDataAjax();  
-  tabla.ajax.reload(null, false);
+  e.preventDefault();
+  updateDataAjax();
+  sendDataAjax();
 });
-
 
 // Llamando a la funcion de ajax al cargar el documento
 sendDataAjax();

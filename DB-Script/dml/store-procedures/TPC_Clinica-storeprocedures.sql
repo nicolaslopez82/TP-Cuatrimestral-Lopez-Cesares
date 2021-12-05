@@ -309,7 +309,7 @@ GO
 /****** Object:  Trigger [dbo].[TR_BajaLogicaEspecialidad] ******/
 --Trigger Delete Especialidad
 GO
-CREATE TRIGGER TR_BajaLogicaEspecialidad ON Especialidad
+CREATE TRIGGER TR_BajaLogicaEspecialidad ON [dbo].[Especialidad]
 INSTEAD of DELETE
 AS 
 BEGIN
@@ -462,7 +462,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-ALTER PROCEDURE [dbo].[SP_ListaMedicos]
+CREATE PROCEDURE [dbo].[SP_ListaMedicos]
 AS
 	BEGIN
 		SELECT 
@@ -603,7 +603,7 @@ CREATE PROCEDURE [dbo].[SP_AgregarReserva]
 	@idhorario BIGINT,
 	@idobservacion VARCHAR(350)
 )
-as 
+AS 
 BEGIN
 
 INSERT INTO Reserva (idMedico,idHorarioDisponible,idPaciente,observacion,fechaCreacionReserva,estado)

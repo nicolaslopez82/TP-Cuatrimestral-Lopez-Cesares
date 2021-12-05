@@ -11,9 +11,14 @@ using CapaDominio;
 
 namespace CapaPresentacion
 {
-  public partial class Pacientes : System.Web.UI.Page
+  public partial class Reserva : System.Web.UI.Page
   {
-    
+
+    //ist<Paciente> Pacientelist { get; set; }
+
+    public static Paciente pacienterese = new Paciente();
+    List<Especialidad> especialidadList { get; set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
       if (Session["usuario"] == null)
@@ -29,22 +34,14 @@ namespace CapaPresentacion
     }
 
     [WebMethod]
-    public static List<Paciente> ListarPacientes()
+    public List<Especialidad> getLista()
     {
-      List<Paciente> Lista = null;
-      try
-      {        
-        Lista = PacienteNegocio.getInstance().ListarPacientes();
-      }
-      catch (Exception ex)
-      {
-        Lista = new List<Paciente>();
-      }
-      return Lista;
+      especialidadList = EspecialidadNegocio.getInstance().listarEspecialidad();
+      return especialidadList;
     }
 
-    [WebMethod]
-    public static bool ActualizarDatosPaciente(String id,
+    [WebMethod(EnableSession = true)]
+    public static void CargarSession(String id,
                                                 String nombres,
                                                 String apellido,
                                                 String edad,
@@ -52,9 +49,10 @@ namespace CapaPresentacion
                                                 String nroDocumento,
                                                 String direccion,
                                                 String telefono)
-    {      
-      char cSexo = sexo.Equals("Masculino") ? 'M' : 'S';     
-      Paciente objPaciente = new Paciente()
+    {
+
+      char cSexo = sexo.Equals("Masculino") ? 'M' : 'S';
+      Paciente objpaciente = new Paciente()
       {
         IdPaciente = Convert.ToInt32(id),
         Nombres = nombres,
@@ -64,29 +62,10 @@ namespace CapaPresentacion
         NroDocumento = nroDocumento,
         Direccion = direccion,
         Telefono = telefono
-        
+
       };
-
-      bool ok = PacienteNegocio.getInstance().Actualizar(objPaciente);
-      return ok;
-    }
-
-    [WebMethod]
-    public static bool EliminarPaciente(String id)
-    {
-      Int32 idPaciente = Convert.ToInt32(id);
-
-      bool ok = PacienteNegocio.getInstance().Eliminar(idPaciente);
-
-      return ok;
-
-    }
-
-
-    //Registro de un nuevo paciente.
-    protected void btnRedirectRegistro_Click(object sender, EventArgs e)
-    {
-      Response.Redirect("RegistroPacienteForm.aspx");
+      //HttpContext.Current.Session.Add("PacienteRese", objpaciente);
+      pacienterese = objpaciente;
     }
   }
 }

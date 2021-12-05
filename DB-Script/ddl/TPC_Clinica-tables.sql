@@ -1,5 +1,5 @@
 /* === Create Database ===*/
-/****** Object:  Database [TPC-Clinica] ******/
+/****** Object:  Database [TPC_Clinica] ******/
 CREATE DATABASE [TPC_Clinica]
 GO
 USE [TPC_Clinica]
