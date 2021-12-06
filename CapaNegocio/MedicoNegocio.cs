@@ -73,5 +73,17 @@ namespace CapaNegocio
             }
         }
 
+        public List<Medico> ListarMedicos() 
+        {
+            try 
+            {
+                return MedicoDAO.getInstance().ListaMedicos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

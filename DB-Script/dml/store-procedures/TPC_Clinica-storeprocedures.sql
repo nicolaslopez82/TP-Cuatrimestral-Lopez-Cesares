@@ -708,3 +708,30 @@ BEGIN
 	WHERE M.idMedico = @idMedico;
 END
 GO
+
+/****** Object:  StoredProcedure [dbo].[SP_ListarHorariosDisponibles] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ListarHorariosDisponibles]
+AS 
+BEGIN
+	SELECT 	
+		HD.idHorarioDisponible, 		
+		HD.idMedico, 
+		M.idUsuario,
+		U.idTipoUsuario,
+		HD.fechaHorarioDisponible,
+		HD.estado
+	FROM [dbo].[HorarioDisponible] AS HD
+	INNER JOIN [dbo].[Medico] AS M
+		ON M.idMedico = HD.idMedico
+	INNER JOIN [dbo].[Usuario] AS U
+		ON U.idUsuario = M.idUsuario
+	WHERE HD.estado = 1;
+END
+GO
+
+--execute SP_ListarHorariosDisponibles
+--drop procedure [SP_ListarHorariosDisponibles]

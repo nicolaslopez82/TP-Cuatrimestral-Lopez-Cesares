@@ -1,6 +1,5 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Reserva.aspx.cs" Inherits="CapaPresentacion.Reserva" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
   <section class="content">
@@ -52,7 +51,7 @@
                           
                         </tr>
                         </tfoot>
-                      </table>                      
+                      </table>
                     </div>
                     <!-- /.card-body -->
                   </div>
@@ -64,46 +63,36 @@
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
+
+    <%-- Requerido para usar Update Panel --%>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+    <hr />
+    <h3> Seleccion de Especialidades - Medicos - Horarios Disponibles </h3>
+      <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+          <div class="row">
+                    <div class="col-sm-4">
+                      <!-- select -->                      
+                      <asp:Label ID="lblEspecialidades" runat="server" Text="Especialidades"></asp:Label>
+                      <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="btn btn-outline-dark dropdown-toggle" 
+                        AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidades_SelectedIndexChanged"></asp:DropDownList>
+                     </div>
+                     <div class="col-sm-4">
+                      <asp:Label ID="lblMedicos" runat="server" Text="Medicos"></asp:Label>
+                      <asp:DropDownList ID="ddlMedicos" runat="server" CssClass="btn btn-outline-dark dropdown-toggle"
+                        AutoPostBack="true" OnSelectedIndexChanged="ddlMedicos_SelectedIndexChanged"></asp:DropDownList>                      
+                     </div>
+                    <div class="col-sm-4">
+                      <asp:Label ID="lblHorarioDisponible" runat="server" Text="Horarios Disponibles"></asp:Label>
+                      <asp:DropDownList ID="ddlHorarioDisponible" runat="server"></asp:DropDownList>
+                    </div>
+                  </div>
+        </ContentTemplate>
+      </asp:UpdatePanel>    
+   
   </section>
 
-  <section>
-   
-        <table>
-            <tr>
-                <td>Especialidades
-                </td>
-                <td>
-                    <select id="continents">
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Medicos</td>
-                <td>
-                    <select id="countries">
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Horarios Disponibles</td>
-                <td>
-                    <select id="cities">
-                    </select>
-                </td>
-            </tr>
-        </table>
-   
-  </section>
-
-  <style>
-  select {
-    width: 250px;
-        }
-</style>
-
-  
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
-  <script src="javascript/Reserva.js" type="text/javascript"></script> 
-  <script src="javascript/ReservaDropDownList.js" type="text/javascript"></script> 
+<asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">    
 </asp:Content>

@@ -34,5 +34,17 @@ namespace CapaNegocio
                 throw ex;
             }
         }
+
+        public List<HorarioDisponible> ListarHorariosDisponibles()
+        {
+            try
+            {
+                return HorarioDisponibleDAO.getInstance().ListarHorariosDisponibles();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -1,55 +1,55 @@
 $(document).ready(function () {
-  var continentsDDL = $('#continents');
-  var countriesDDL = $('#countries');
-  var citiesDDL = $('#cities');
+  var especialidadesDDL = $('#especialidades');
+  var medicosDDL = $('#medicos');
+  var horariosDisponiblesDDL = $('#horariosDisponibles');
 
   $.ajax({
-    url: 'DataService.asmx/GetContinents',
+    url: 'Reserva/ListarEspecialidades',
     method: 'post',
     dataType: 'json',
     success: function (data) {
-      continentsDDL.append($('<option/>', { value: -1, text: 'Select Continent' }));
-      countriesDDL.append($('<option />', { value: -1, text: 'Select Country' }));
-      citiesDDL.append($('<option />', { value: -1, text: 'Select City' }));
-      countriesDDL.prop('disabled', true);
-      citiesDDL.prop('disabled', true);
+      especialidadesDDL.append($('<option/>', { value: -1, text: 'Select Especialidades' }));
+      medicosDDL.append($('<option />', { value: -1, text: 'Select Medico' }));
+      horariosDisponiblesDDL.append($('<option />', { value: -1, text: 'Select Horario Disponible' }));
+      medicosDDL.prop('disabled', true);
+      horariosDisponiblesDDL.prop('disabled', true);
 
       $(data).each(function (index, item) {
-        continentsDDL.append($('<option/>', { value: item.Id, text: item.Name }));
+        especialidadesDDL.append($('<option/>', { value: item.IdEspecialidad, text: item.Descripcion }));
       });
     },
-    error: function (err) {
+    error: function (err) {      
       alert(err);
     }
   });
 
-  continentsDDL.change(function () {
+  especialidadesDDL.change(function () {
     if ($(this).val() == "-1") {
-      countriesDDL.empty();
-      citiesDDL.empty();
-      countriesDDL.append($('<option />', { value: -1, text: 'Select Country' }));
-      citiesDDL.append($('<option />', { value: -1, text: 'Select City' }));
-      countriesDDL.val('-1');
-      citiesDDL.val('-1');
-      countriesDDL.prop('disabled', true);
-      citiesDDL.prop('disabled', true);
+      medicosDDL.empty();
+      horariosDisponiblesDDL.empty();
+      medicosDDL.append($('<option />', { value: -1, text: 'Select Medico' }));
+      horariosDisponiblesDDL.append($('<option />', { value: -1, text: 'Select Horario Disponible' }));
+      medicosDDL.val('-1');
+      horariosDisponiblesDDL.val('-1');
+      medicosDDL.prop('disabled', true);
+      horariosDisponiblesDDL.prop('disabled', true);
     }
     else {
-      citiesDDL.val('-1');
-      citiesDDL.prop('disabled', true);
+      horariosDisponiblesDDL.val('-1');
+      horariosDisponiblesDDL.prop('disabled', true);
       $.ajax({
-        url: 'DataService.asmx/GetCountriesByContinentId',
+        url: 'Reserva.aspx/ListarMedicosPorEspecialidad', //ListarMedicosPorEspecialidad
         method: 'post',
         dataType: 'json',
-        data: { ContinentId: $(this).val() },
+        data: { IdEspecialidad: $(this).val() },
         success: function (data) {
-          countriesDDL.empty();
-          countriesDDL.append($('<option />', { value: -1, text: 'Select Country' }));
+          medicosDDL.empty();
+          medicosDDL.append($('<option />', { value: -1, text: 'Select Medico' }));
           $(data).each(function (index, item) {
-            countriesDDL.append($('<option/>', { value: item.Id, text: item.Name }));
+            medicosDDL.append($('<option/>', { value: item.IdMedico, text: item.Nombre + item.Apellido}));
           });
-          countriesDDL.val('-1');
-          countriesDDL.prop('disabled', false);
+          medicosDDL.val('-1');
+          medicosDDL.prop('disabled', false);
         },
         error: function (err) {
           alert(err);
@@ -58,27 +58,27 @@ $(document).ready(function () {
     }
   });
 
-  countriesDDL.change(function () {
+  medicosDDL.change(function () {
     if ($(this).val() == "-1") {
-      citiesDDL.empty();
-      citiesDDL.append($('<option />', { value: -1, text: 'Select City' }));
-      citiesDDL.val('-1');
-      citiesDDL.prop('disabled', true);
+      horariosDisponiblesDDL.empty();
+      horariosDisponiblesDDL.append($('<option />', { value: -1, text: 'Select Horario Disponible' }));
+      horariosDisponiblesDDL.val('-1');
+      horariosDisponiblesDDL.prop('disabled', true);
     }
     else {
       $.ajax({
-        url: 'DataService.asmx/GetCitiesByCountryId',
+        url: 'Reserva.aspx/ListarHorariosDisponiblesPorMedico', //ListarHorariosDisponiblesPorMedico
         method: 'post',
         dataType: 'json',
-        data: { CountryId: $(this).val() },
+        data: { IdMedico: $(this).val() },
         success: function (data) {
-          citiesDDL.empty();
-          citiesDDL.append($('<option/>', { value: -1, text: 'Select City' }));
+          horariosDisponiblesDDL.empty();
+          horariosDisponiblesDDL.append($('<option/>', { value: -1, text: 'Select Horarios Disponibles' }));
           $(data).each(function (index, item) {
-            citiesDDL.append($('<option/>', { value: item.Id, text: item.Name }));
+            horariosDisponiblesDDL.append($('<option/>', { value: item.IdHorarioDisponible, text: item.FechaHorarioDisponible }));
           });
-          citiesDDL.val('-1');
-          citiesDDL.prop('disabled', false);
+          horariosDisponiblesDDL.val('-1');
+          horariosDisponiblesDDL.prop('disabled', false);
         },
         error: function (err) {
           alert(err);

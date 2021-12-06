@@ -642,6 +642,7 @@
     <Content Include="jAlert\jquery.alerts.css" />
     <Content Include="jAlert\jquery.alerts.js" />
     <Content Include="javascript\Especialidad.js" />
+    <Content Include="javascript\jquery-1.11.2.js" />
     <Content Include="javascript\Logout.js" />
     <Content Include="javascript\Medicos.js" />
     <Content Include="javascript\NavsItems.js" />
