@@ -68,6 +68,7 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
     <hr />
+    <hr />
     <h3> Seleccion de Especialidades - Medicos - Horarios Disponibles </h3>
       <asp:UpdatePanel runat="server">
         <ContentTemplate>
@@ -89,8 +90,19 @@
                     </div>
                   </div>
         </ContentTemplate>
-      </asp:UpdatePanel>    
-   
+      </asp:UpdatePanel>
+    <hr />
+    <hr />
+      <div class="col-sm-12">
+        <asp:Label ID="lblObservacion" runat="server" Text="Observacion"></asp:Label>
+        <asp:TextBox ID="txtObservacion" runat="server" TextMode="MultiLine"></asp:TextBox>
+      </div>
+    <hr />  
+    <hr />
+    <div class="col-sm-6">
+       <asp:Button ID="btnConfirmarReserva" runat="server" Text="Confirmar Reserva"  CssClass="btn btn-primary" OnClick="btnConfirmarReserva_Click"/>
+    </div>
+    
   </section>
 
 </asp:Content>

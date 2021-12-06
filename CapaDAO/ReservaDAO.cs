@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CapaDominio;
 using System.Data.SqlClient;
 using CapaAccesoDatos;
-
+using System.Data;
 
 namespace CapaDAO
 {
@@ -24,6 +24,38 @@ namespace CapaDAO
             return daoReserva;
         }
         #endregion
+
+        public bool RegistrarReserva(int idPaciente, int idMedico, int idHorarioDisponible, string observacion)
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            bool response = false;
+            try
+            {
+                con = Conexion.getInstance().ConexionBD();                
+                cmd = new SqlCommand("SP_AgregarReserva", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idmedico", idMedico);
+                cmd.Parameters.AddWithValue("@idPaciente", idPaciente);
+                cmd.Parameters.AddWithValue("@idhorario", idHorarioDisponible);
+                cmd.Parameters.AddWithValue("@idobservacion", observacion);
+                con.Open();
+
+                int filas = cmd.ExecuteNonQuery();
+                if (filas > 0) response = true;
+
+            }
+            catch (Exception ex)
+            {
+                response = false;
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return response;
+        }
 
         public bool RegistrarReserva(Reserva objreserva)
         {

@@ -23,6 +23,19 @@ namespace CapaNegocio
         }
         #endregion
 
+        public bool RegistrarReserva(int idPaciente, int idMedico, int idHorarioDisponible, string observacion)
+        {
+            try
+            {
+                return ReservaDAO.getInstance().RegistrarReserva(idPaciente, idMedico, idHorarioDisponible, observacion);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public bool RegistrarReserva(Reserva objreserva)
         {
             try

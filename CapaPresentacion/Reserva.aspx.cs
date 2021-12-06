@@ -8,7 +8,6 @@ using System.Web.Services;
 using System.Web.Script.Serialization;
 using CapaNegocio;
 using CapaDominio;
-using Newtonsoft.Json;
 
 namespace CapaPresentacion
 {
@@ -72,6 +71,42 @@ namespace CapaPresentacion
         ddlHorarioDisponible.DataValueField = "IdHorarioDisponible";
         ddlHorarioDisponible.DataBind();
       }
+    }
+    
+      protected void btnConfirmarReserva_Click(object sender, EventArgs e)
+    {
+
+      if (!(validarCamposReserva()))
+      {
+        Response.Write("<script>alert('REGISTRO INCORRECTO, NO PUEDE HABER CAMPOS INCOMPLETOS.')</script>");
+        return;
+      }
+      
+      int idPaciente = pacienterese.IdPaciente;
+      int idMedico = int.Parse(ddlMedicos.SelectedItem.Value);      
+      int idHorarioDisponible = int.Parse(ddlHorarioDisponible.SelectedItem.Value);
+      string observacion = txtObservacion.Text;
+
+      // enviar a la capa de logica de negocio
+      bool response = ReservaNegocio.getInstance().RegistrarReserva(idPaciente, idMedico, idHorarioDisponible, observacion);
+      if (response)
+      {        
+        Response.Write("<script>alert('RESERVA CORRECTA.')</script>");
+        Response.Redirect("Pacientes.aspx");
+      }
+      else
+      {
+        Response.Write("<script>alert('RESERVA INCORRECTA.')</script>");
+      }
+    }
+
+    private bool validarCamposReserva()
+    {
+      if (ddlEspecialidades.SelectedItem.Value.Equals("") || ddlEspecialidades.SelectedItem.Value == null ||
+          ddlMedicos.SelectedItem.Value.Equals("") || ddlMedicos.SelectedItem.Value == null ||
+          ddlHorarioDisponible.SelectedItem.Value.Equals("") || ddlHorarioDisponible.SelectedItem.Value == null)
+      { return false; }
+      else { return true; }
     }
 
     [WebMethod(EnableSession = true)]
