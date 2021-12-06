@@ -642,11 +642,13 @@
     <Content Include="jAlert\jquery.alerts.css" />
     <Content Include="jAlert\jquery.alerts.js" />
     <Content Include="javascript\Especialidad.js" />
+    <Content Include="javascript\jquery-1.11.2.js" />
     <Content Include="javascript\Logout.js" />
     <Content Include="javascript\Medicos.js" />
     <Content Include="javascript\NavsItems.js" />
     <Content Include="javascript\Pacientes.js" />
     <Content Include="javascript\Reserva.js" />
+    <Content Include="javascript\ReservaDropDownList.js" />
     <Content Include="javascript\Usuarios.js" />
     <Content Include="js\AdminLTE\app.js" />
     <Content Include="js\AdminLTE\dashboard.js" />

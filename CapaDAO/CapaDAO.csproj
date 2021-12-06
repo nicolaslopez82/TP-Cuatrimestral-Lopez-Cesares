@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EspecialidadDAO.cs" />
+    <Compile Include="HorarioDisponibleDAO.cs" />
     <Compile Include="MedicoDAO.cs" />
     <Compile Include="PacienteDAO.cs" />
+    <Compile Include="ReservaDAO.cs" />
     <Compile Include="UsuarioDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

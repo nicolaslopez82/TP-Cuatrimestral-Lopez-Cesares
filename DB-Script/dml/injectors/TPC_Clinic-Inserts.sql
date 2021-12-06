@@ -13,6 +13,10 @@ INSERT [dbo].[Usuario] ([idUsuario], [idTipoUsuario], [nombre], [apellido], [nro
 INSERT [dbo].[Usuario] ([idUsuario], [idTipoUsuario], [nombre], [apellido], [nroDocumento], [estado], [usuario], [contrasenia]) VALUES (5, 3, 'Damian', 'Altube', '33987654', 1, 'daltube', ENCRYPTBYPASSPHRASE('utnclinica', '98765'))
 INSERT [dbo].[Usuario] ([idUsuario], [idTipoUsuario], [nombre], [apellido], [nroDocumento], [estado], [usuario], [contrasenia]) VALUES (6, 3, 'Hugo', 'Sicari', '12876345', 1, NULL, NULL)
 INSERT [dbo].[Usuario] ([idUsuario], [idTipoUsuario], [nombre], [apellido], [nroDocumento], [estado], [usuario], [contrasenia]) VALUES (7, 3, 'Graciela', 'Rosalin', '12756398', 1, 'grosalin', ENCRYPTBYPASSPHRASE('utnclinica', 'frutilla123'))
+INSERT [dbo].[Usuario] ([idUsuario], [idTipoUsuario], [nombre], [apellido], [nroDocumento], [estado], [usuario], [contrasenia]) VALUES (8, 3, 'Rene', 'Favaloro', '12733398', 1, 'rfavaloro', ENCRYPTBYPASSPHRASE('utnclinica', 'frutilla123'))
+INSERT [dbo].[Usuario] ([idUsuario], [idTipoUsuario], [nombre], [apellido], [nroDocumento], [estado], [usuario], [contrasenia]) VALUES (9, 3, 'Dominicio', 'pasteur', '12766698', 1, 'dpasteur', ENCRYPTBYPASSPHRASE('utnclinica', 'frutilla123'))
+INSERT [dbo].[Usuario] ([idUsuario], [idTipoUsuario], [nombre], [apellido], [nroDocumento], [estado], [usuario], [contrasenia]) VALUES (10, 3, 'Jeronimo', 'Lavalle', '12756124', 1, 'jlavalle', ENCRYPTBYPASSPHRASE('utnclinica', 'frutilla123'))
+INSERT [dbo].[Usuario] ([idUsuario], [idTipoUsuario], [nombre], [apellido], [nroDocumento], [estado], [usuario], [contrasenia]) VALUES (11, 3, 'Victoria', 'Valentini', '22345398', 1, 'vvalentini', ENCRYPTBYPASSPHRASE('utnclinica', 'frutilla123'))
 SET IDENTITY_INSERT [dbo].[Usuario] OFF
 
 SET IDENTITY_INSERT [dbo].[Paciente] ON
@@ -35,3 +39,88 @@ INSERT [dbo].[Paciente] ( [nombre], [apellido], [edad], [sexo], [nroDocumento], 
 INSERT [dbo].[Paciente] ( [nombre], [apellido], [edad], [sexo], [nroDocumento], [direccion], [telefono], [estado]) VALUES ('Tyrion', 'Lannister', 31, 'M', '87645633', 'Lannister 5555', '1512985777', 1)
 SET IDENTITY_INSERT [dbo].[Paciente] OFF
  
+SET IDENTITY_INSERT [dbo].[Especialidad] ON 
+INSERT [dbo].[Especialidad] ([idEspecialidad], [descripcion], [estado]) VALUES (1, N'Clinica Medica', 1)
+INSERT [dbo].[Especialidad] ([idEspecialidad], [descripcion], [estado]) VALUES (2, N'Traumatologia', 1)
+INSERT [dbo].[Especialidad] ([idEspecialidad], [descripcion], [estado]) VALUES (3, N'Pediatra', 1)
+INSERT [dbo].[Especialidad] ([idEspecialidad], [descripcion], [estado]) VALUES (4, N'Cirugia', 1)
+SET IDENTITY_INSERT [dbo].[Especialidad] OFF
+
+SET IDENTITY_INSERT [dbo].[Medico] ON 
+INSERT [dbo].[Medico] ([idMedico], [idUsuario], [estado]) VALUES (1, 4, 1)
+INSERT [dbo].[Medico] ([idMedico], [idUsuario], [estado]) VALUES (2, 5, 1)
+INSERT [dbo].[Medico] ([idMedico], [idUsuario], [estado]) VALUES (3, 6, 1)
+INSERT [dbo].[Medico] ([idMedico], [idUsuario], [estado]) VALUES (4, 7, 1)
+INSERT [dbo].[Medico] ([idMedico], [idUsuario], [estado]) VALUES (5, 8, 1)
+INSERT [dbo].[Medico] ([idMedico], [idUsuario], [estado]) VALUES (6, 9, 1)
+INSERT [dbo].[Medico] ([idMedico], [idUsuario], [estado]) VALUES (7, 10, 1)
+INSERT [dbo].[Medico] ([idMedico], [idUsuario], [estado]) VALUES (8, 11, 1)
+SET IDENTITY_INSERT [dbo].[Medico] OFF
+
+--SET IDENTITY_INSERT [dbo].[MedicoEspecialidad] ON
+INSERT  [dbo].[MedicoEspecialidad] ([idEspecialidad], [idMedico]) VALUES (1, 4)
+INSERT  [dbo].[MedicoEspecialidad] ([idEspecialidad], [idMedico]) VALUES (3, 5)
+INSERT  [dbo].[MedicoEspecialidad] ([idEspecialidad], [idMedico]) VALUES (4, 5)
+INSERT  [dbo].[MedicoEspecialidad] ([idEspecialidad], [idMedico]) VALUES (1, 6)
+INSERT  [dbo].[MedicoEspecialidad] ([idEspecialidad], [idMedico]) VALUES (2, 7)
+INSERT  [dbo].[MedicoEspecialidad] ([idEspecialidad], [idMedico]) VALUES (1, 8)
+INSERT  [dbo].[MedicoEspecialidad] ([idEspecialidad], [idMedico]) VALUES (3, 8)
+INSERT  [dbo].[MedicoEspecialidad] ([idEspecialidad], [idMedico]) VALUES (4, 8)
+INSERT  [dbo].[MedicoEspecialidad] ([idEspecialidad], [idMedico]) VALUES (3, 1)
+INSERT  [dbo].[MedicoEspecialidad] ([idEspecialidad], [idMedico]) VALUES (2, 2)
+INSERT  [dbo].[MedicoEspecialidad] ([idEspecialidad], [idMedico]) VALUES (4, 2)
+INSERT  [dbo].[MedicoEspecialidad] ([idEspecialidad], [idMedico]) VALUES (1, 3)
+INSERT  [dbo].[MedicoEspecialidad] ([idEspecialidad], [idMedico]) VALUES (3, 3)
+--SET IDENTITY_INSERT [dbo].[MedicoEspecialidad] OFF
+
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 1, CONVERT(DATETIME, '2021-10-12 09:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 1, CONVERT(DATETIME, '2021-10-12 10:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 1, CONVERT(DATETIME, '2021-10-12 11:00'), 1 )
+
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 2, CONVERT(DATETIME, '2021-10-13 13:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 2, CONVERT(DATETIME, '2021-10-13 14:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 2, CONVERT(DATETIME, '2021-10-13 15:00'), 1 )
+
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 3, CONVERT(DATETIME, '2021-10-14 16:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 3, CONVERT(DATETIME, '2021-10-14 17:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 3, CONVERT(DATETIME, '2021-10-15 16:00'), 1 )
+
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 4, CONVERT(DATETIME, '2021-10-15 09:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 4, CONVERT(DATETIME, '2021-10-16 09:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 4, CONVERT(DATETIME, '2021-10-17 09:00'), 1 )
+
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 5, CONVERT(DATETIME, '2021-10-13 15:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 5, CONVERT(DATETIME, '2021-10-15 15:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 5, CONVERT(DATETIME, '2021-10-17 15:00'), 1 )
+
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 6, CONVERT(DATETIME, '2021-10-13 09:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 6, CONVERT(DATETIME, '2021-10-14 09:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 6, CONVERT(DATETIME, '2021-10-17 17:00'), 1 )
+
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 7, CONVERT(DATETIME, '2021-10-21 09:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 7, CONVERT(DATETIME, '2021-10-22 09:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 7, CONVERT(DATETIME, '2021-10-23 09:00'), 1 )
+
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 8, CONVERT(DATETIME, '2021-10-13 10:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 8, CONVERT(DATETIME, '2021-10-14 11:00'), 1 )
+INSERT [dbo].[HorarioDisponible] ([idMedico], [fechaHorarioDisponible], [estado]) VALUES( 8, CONVERT(DATETIME, '2021-10-17 12:00'), 1 )
+
+/*
+SELECT E.descripcion, 
+		M.idMedico, 
+		U.nombre, 
+		U.apellido, 
+		HD.idHorarioDisponible, 
+		HD.idMedico, 
+		HD.fechaHorarioDisponible
+  FROM [dbo].[Especialidad] AS E
+  INNER JOIN [dbo].[MedicoEspecialidad] AS ME
+	ON ME.idEspecialidad = E.idEspecialidad
+  INNER JOIN [dbo].[Medico] AS M
+	ON M.idMedico = ME.idMedico
+  INNER JOIN [dbo].[Usuario] AS U
+	ON U.idUsuario = M.idUsuario
+  INNER JOIN [dbo].[HorarioDisponible] AS HD
+	ON HD.idMedico = M.idMedico
+	WHERE E.idEspecialidad = 2;
+*/

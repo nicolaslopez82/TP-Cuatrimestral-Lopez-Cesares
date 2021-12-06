@@ -633,3 +633,105 @@ EXEC SP_AltaHorario @idHorario
 END
 
 
+/****** Object:  StoredProcedure [dbo].[SP_ListaReserva] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ListaReserva]
+(
+	@idMedico BIGINT
+)
+AS 
+BEGIN
+
+	SELECT 
+		re.idReserva,
+		re.observacion,
+		re.fechaCreacionReserva,
+		p.apellido,
+		p.nombre,
+		hd.fechaHorarioDisponible
+
+	FROM Reserva AS Re 
+	INNER JOIN Paciente AS p ON p.idPaciente =re.idPaciente
+	INNER JOIN HorarioDisponible AS hd ON hd.idHorarioDisponible = re.idHorarioDisponible
+
+END
+GO
+
+/* ============ SP de DropDownLists ================= */
+
+/****** Object:  StoredProcedure [dbo].[SP_ListarMedicosPorEspecialidad] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ListarMedicosPorEspecialidad]
+(
+	@idEspecialidad BIGINT
+)
+AS 
+BEGIN
+	SELECT M.idMedico, 
+		U.nombre, 
+		U.apellido		
+  FROM [dbo].[Especialidad] AS E
+  INNER JOIN [dbo].[MedicoEspecialidad] AS ME
+	ON ME.idEspecialidad = E.idEspecialidad
+  INNER JOIN [dbo].[Medico] AS M
+	ON M.idMedico = ME.idMedico
+  INNER JOIN [dbo].[Usuario] AS U
+	ON U.idUsuario = M.idUsuario  
+	WHERE E.idEspecialidad = @idEspecialidad;
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_ListarHorariosDisponiblesPorMedico] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ListarHorariosDisponiblesPorMedico]
+(
+	@idMedico BIGINT
+)
+AS 
+BEGIN
+	SELECT 
+		HD.idHorarioDisponible, 		
+		HD.fechaHorarioDisponible
+  FROM [dbo].[Medico] AS M	
+  INNER JOIN [dbo].[HorarioDisponible] AS HD
+	ON HD.idMedico = M.idMedico
+	WHERE M.idMedico = @idMedico;
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_ListarHorariosDisponibles] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ListarHorariosDisponibles]
+AS 
+BEGIN
+	SELECT 	
+		HD.idHorarioDisponible, 		
+		HD.idMedico, 
+		M.idUsuario,
+		U.idTipoUsuario,
+		HD.fechaHorarioDisponible,
+		HD.estado
+	FROM [dbo].[HorarioDisponible] AS HD
+	INNER JOIN [dbo].[Medico] AS M
+		ON M.idMedico = HD.idMedico
+	INNER JOIN [dbo].[Usuario] AS U
+		ON U.idUsuario = M.idUsuario
+	WHERE HD.estado = 1;
+END
+GO
+
+--execute SP_ListarHorariosDisponibles
+--drop procedure [SP_ListarHorariosDisponibles]

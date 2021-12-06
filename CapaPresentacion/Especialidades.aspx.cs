@@ -22,7 +22,7 @@ namespace CapaPresentacion
     }
 
     [WebMethod]
-    public static List<Especialidad> ListarEspe()
+    public static List<Especialidad> ListarEspecialidades()
     {
       List<Especialidad> lista = null;
 

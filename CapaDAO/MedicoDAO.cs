@@ -244,9 +244,6 @@ namespace CapaDAO
                         objMedico.Nombre = (string)dr["nombre"];
                         objMedico.Apellido = (string)dr["apellido"];
                         objMedico.NroDocumento = (string)dr["nroDocumento"];
-
-
-
                     }
                     Lista.Add(objMedico);
                 }
@@ -320,6 +317,49 @@ namespace CapaDAO
 
             return Lista;
 
+        }
+
+        public List<Medico> BuscarMedicosPorEspecialidad(int idEspecialidad)
+        {
+            List<Medico> MedicosLista = new List<Medico>();
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+            Medico objMedico = null;
+            SqlDataReader dr = null;
+
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("SP_ListarMedicosPorEspecialidad", conexion);
+                cmd.Parameters.AddWithValue("@idEspecialidad", idEspecialidad);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                conexion.Open();
+
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    // instanciar nuestro objeto
+                    objMedico = new Medico()
+                    {
+                        IdMedico = Convert.ToInt32(dr["idMedico"].ToString()),                        
+                        Nombre = dr["nombre"].ToString(),
+                        Apellido = dr["apellido"].ToString()                        
+                    };
+
+                    MedicosLista.Add(objMedico);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return MedicosLista;
         }
 
     }

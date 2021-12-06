@@ -8,7 +8,7 @@ using CapaDAO;
 
 namespace CapaNegocio
 {
-    class MedicoNegocio
+    public class MedicoNegocio
     {
         #region "PATRON SINGLETON"
         private static MedicoNegocio objMedico = null;
@@ -57,6 +57,30 @@ namespace CapaNegocio
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+        }
+
+        public List<Medico> BuscarMedicosPorEspecialidad(int idEspecialidad) {            
+
+            try 
+            {
+                return MedicoDAO.getInstance().BuscarMedicosPorEspecialidad(idEspecialidad);                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Medico> ListarMedicos() 
+        {
+            try 
+            {
+                return MedicoDAO.getInstance().ListaMedicos();
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }
