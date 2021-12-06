@@ -7,23 +7,24 @@ var example2 = new viewmodel()
 
 ko.applyBindings(example2, document.getElementById('example2'));
 
-
 // Example 2
 $('#example2').cascadingDropdown({
   selectBoxes: [
     {
       selector: '.step1',
-      //source: function (request, response) {
-      //  $.getJSON('Pacientes.aspx/ListarPacientes', request, function (data) {
-      //    response($.map(data, function (item, index) {
-      //      return {
-      //        label: item.Nombres,
-      //        value: item.IdPaciente
-      //      }
-      //    }));
-      //  });
-      //}
+      source: function (request, response) {
+        $.getjson('Reserva/LoadDropDownEspecialidades', request, function (data) {
+          response($.map(data, function (item, index) {
+            return {
+              label: item.Descripcion,
+              value: item.IdEspecialidad
+            }
+          }));
+        });
+      }
+
       //source: 'Pacientes.aspx/ListarPacientes'
+
       //source: [
       //  { label: 'Pediatria', value: 1 },
       //  { label: 'Traumotologia' , value: 2 },
@@ -31,12 +32,12 @@ $('#example2').cascadingDropdown({
       //  { label: 'Odontologia', value: 4 }
       //]
 
-      source: [
-        { label: '4.0"', value: 4 },
-        { label: '4.3"', value: 4.3 },
-        { label: '4.7"', value: 4.7 },
-        { label: '5.0"', value: 5 }
-      ]      
+      //source: [
+      //  { label: '4.0"', value: 4 },
+      //  { label: '4.3"', value: 4.3 },
+      //  { label: '4.7"', value: 4.7 },
+      //  { label: '5.0"', value: 5 }
+      //]      
     },
     {
       selector: '.step2',

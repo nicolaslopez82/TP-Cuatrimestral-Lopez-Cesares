@@ -642,7 +642,13 @@
     <Content Include="jAlert\jquery.alerts.css" />
     <Content Include="jAlert\jquery.alerts.js" />
     <Content Include="javascript\Especialidad.js" />
+    <Content Include="javascript\jcd\dist\jquery.cascadingdropdown.js" />
+    <Content Include="javascript\jcd\dist\jquery.cascadingdropdown.min.js" />
+    <Content Include="javascript\jcd\dist\jquery.cascadingdropdown.min.js.js" />
     <Content Include="javascript\jcd\jcd.js" />
+    <Content Include="javascript\jcd\jquery-3.1.1.min.js" />
+    <Content Include="javascript\jcd\res\ajax-loader.gif" />
+    <Content Include="javascript\jcd\res\ajax-mocks.js" />
     <Content Include="javascript\Logout.js" />
     <Content Include="javascript\Medicos.js" />
     <Content Include="javascript\NavsItems.js" />
@@ -857,6 +863,7 @@
     <Content Include="js\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="js\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="js\plugins\slimScroll\slimScroll.jquery.json" />
+    <Content Include="javascript\jcd\res\rocket-loader.min" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="iframe.html" />
     <Content Include="index.html" />
@@ -2919,8 +2926,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="javascript\jcd\dist\" />
-    <Folder Include="javascript\jcd\res\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

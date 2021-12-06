@@ -46,7 +46,7 @@ function addRowDT(data) {
 function sendDataAjax() {
   $.ajax({
     type: "POST",
-    url: "Especialidades.aspx/ListarEspe",
+    url: "Especialidades.aspx/ListarEspecialidades",
     data: {},
     contentType: 'application/json; charset=utf-8',
     error: function (xhr, ajaxOptions, thrownError) {
