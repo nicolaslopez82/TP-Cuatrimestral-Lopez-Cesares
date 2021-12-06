@@ -45,6 +45,7 @@
     <Compile Include="HorarioDisponible.cs" />
     <Compile Include="Medico.cs" />
     <Compile Include="Paciente.cs" />
+    <Compile Include="Reserva.cs" />
     <Compile Include="TipoUsuario.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

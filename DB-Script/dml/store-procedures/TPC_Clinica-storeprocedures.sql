@@ -633,3 +633,28 @@ EXEC SP_AltaHorario @idHorario
 END
 
 
+/****** Object:  StoredProcedure [dbo].[SP_ListaReserva] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ListaReserva]
+(
+	@idMedico BIGINT
+)
+AS 
+BEGIN
+
+	SELECT 
+		re.idReserva,
+		re.observacion,
+		re.fechaCreacionReserva,
+		p.apellido,
+		p.nombre,
+		hd.fechaHorarioDisponible
+
+	FROM Reserva AS Re 
+	INNER JOIN Paciente AS p ON p.idPaciente =re.idPaciente
+	INNER JOIN HorarioDisponible AS hd ON hd.idHorarioDisponible = re.idHorarioDisponible
+
+END

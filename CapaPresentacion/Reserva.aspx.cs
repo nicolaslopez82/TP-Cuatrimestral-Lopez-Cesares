@@ -41,18 +41,6 @@ namespace CapaPresentacion
       return especialidadList;
     }
 
-    [WebMethod]
-    public Dictionary<int, string> LoadDropDownEspecialidades()
-    {
-      especialidadList = EspecialidadNegocio.getInstance().listarEspecialidad();
-      Dictionary<int, string> EspecialidadesData = new Dictionary<int, string>();
-      foreach(Especialidad especialidad in especialidadList){
-        EspecialidadesData.Add(especialidad.IdEspecialidad, especialidad.Descripcion);
-      }
-      string json = JsonConvert.SerializeObject(EspecialidadesData);
-      return EspecialidadesData;
-    }
-
     [WebMethod(EnableSession = true)]
     public static void CargarSession(String id,
                                                 String nombres,
@@ -77,25 +65,8 @@ namespace CapaPresentacion
         Telefono = telefono
 
       };
-      //HttpContext.Current.Session.Add("PacienteRese", objpaciente);
+      HttpContext.Current.Session.Add("PacienteRese", objpaciente);
       pacienterese = objpaciente;
     }
-
-    //protected void btnRegistrar_Click(object sender, EventArgs e) {
-    //  List<Especialidad> EspecialidadList; 
-    //  List<Medico> MedicoList; 
-    //  List<HorarioDisponible> HorarioDisponibleList;
-
-    //  EspecialidadNegocio.getInstance().listarEspecialidad();
-
-    //  try
-    //  {
-    //    return PacienteDAO.getInstance().ListarPacientes();
-    //  }
-    //  catch (Exception ex)
-    //  {
-    //    throw ex;
-    //  }
-    //}
   }
 }
