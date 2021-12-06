@@ -658,3 +658,53 @@ BEGIN
 	INNER JOIN HorarioDisponible AS hd ON hd.idHorarioDisponible = re.idHorarioDisponible
 
 END
+GO
+
+/* ============ SP de DropDownLists ================= */
+
+/****** Object:  StoredProcedure [dbo].[SP_ListarMedicosPorEspecialidad] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ListarMedicosPorEspecialidad]
+(
+	@idEspecialidad BIGINT
+)
+AS 
+BEGIN
+	SELECT M.idMedico, 
+		U.nombre, 
+		U.apellido		
+  FROM [dbo].[Especialidad] AS E
+  INNER JOIN [dbo].[MedicoEspecialidad] AS ME
+	ON ME.idEspecialidad = E.idEspecialidad
+  INNER JOIN [dbo].[Medico] AS M
+	ON M.idMedico = ME.idMedico
+  INNER JOIN [dbo].[Usuario] AS U
+	ON U.idUsuario = M.idUsuario  
+	WHERE E.idEspecialidad = @idEspecialidad;
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_ListarHorariosDisponiblesPorMedico] ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ListarHorariosDisponiblesPorMedico]
+(
+	@idMedico BIGINT
+)
+AS 
+BEGIN
+	SELECT 
+		HD.idHorarioDisponible, 		
+		HD.fechaHorarioDisponible
+  FROM [dbo].[Medico] AS M	
+  INNER JOIN [dbo].[HorarioDisponible] AS HD
+	ON HD.idMedico = M.idMedico
+	WHERE M.idMedico = @idMedico;
+END
+GO
