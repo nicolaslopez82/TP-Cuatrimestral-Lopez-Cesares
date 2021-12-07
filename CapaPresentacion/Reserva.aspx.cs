@@ -137,6 +137,47 @@ namespace CapaPresentacion
       pacienterese = objpaciente;
     }
 
+    // ELIMINAR RESERVA
+    [WebMethod]
+    public static bool EliminarReserva(string IdReserva)
+    {
+      int aux = Convert.ToInt32(IdReserva);
+
+      bool ok = ReservaNegocio.getInstance().EliminarReserva(aux);
+      return ok;
+
+
+    }
+
+    // LISTA TODAS LAS RESERVAS.
+    [WebMethod]
+    public static List<CapaDominio.Reserva> ListarReservas()
+    {
+      try
+      {
+        return ReservaNegocio.getInstance().ListarReservas();        
+      }
+      catch (Exception ex)
+      {
+        throw ex;
+      }
+    }
+
+    //LISTA TODAS LAS RESERVAS POR ID DE MEDICO.
+    [WebMethod]
+    public static List<CapaDominio.Reserva> ListarReservaPorMedico(string IdMedico)
+    {
+      int nIdMedico = Convert.ToInt32(IdMedico);
+      try
+      {
+        return ReservaNegocio.getInstance().ListarReservaPorMedico(nIdMedico);
+      }
+      catch (Exception ex)
+      {
+        throw ex;
+      }
+    }
+
     [WebMethod]
     public List<Especialidad> getLista()
     {

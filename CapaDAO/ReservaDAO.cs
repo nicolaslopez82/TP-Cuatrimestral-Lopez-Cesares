@@ -98,6 +98,7 @@ namespace CapaDAO
                 con = Conexion.getInstance().ConexionBD();
                 cmd = new SqlCommand("SP_EliminarReserva", con);
                 cmd.Parameters.AddWithValue("@idReserva", idReserva);
+                cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
 
                 int filas = cmd.ExecuteNonQuery();
@@ -119,6 +120,7 @@ namespace CapaDAO
 
         }
 
+        //Listar todas las Reservas
         public List<Reserva> ListarReservas()
         {
             List<Reserva> Lista = new List<Reserva>();
@@ -129,7 +131,53 @@ namespace CapaDAO
             try
             {
                 con = Conexion.getInstance().ConexionBD();
-                cmd = new SqlCommand("SP_ListaReserva", con);
+                cmd = new SqlCommand("SP_ListarReservas", con);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                con.Open();
+                dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Reserva objreserva = new Reserva();
+                    objreserva.IdReserva = (int)dr["idReserva"];
+                    objreserva.Observacion = (string)dr["observacion"];
+                    objreserva.FechaCreacion = (DateTime)dr["fechaCreacionReserva"];
+                    objreserva.Ppaciente = new Paciente();
+                    objreserva.Ppaciente.Apellido = (string)dr["apellido"];
+                    objreserva.Ppaciente.Nombres = (string)dr["nombre"];
+                    objreserva.HorarioDisponibleH = new HorarioDisponible();
+                    objreserva.HorarioDisponibleH.FechaHorarioDisponible = (DateTime)dr["fechaHorarioDisponible"];
+
+                    Lista.Add(objreserva);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return Lista;
+        }
+
+        //Lista Reservas por Medico 
+        public List<Reserva> ListarReservasPorMedico(int idMedico)
+        {
+            List<Reserva> Lista = new List<Reserva>();
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+
+            try
+            {
+                con = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("SP_ListarReservasPorMedico", con);
+                cmd.Parameters.AddWithValue("@idMedico", idMedico);
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 con.Open();
                 dr = cmd.ExecuteReader();
