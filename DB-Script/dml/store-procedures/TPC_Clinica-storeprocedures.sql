@@ -638,7 +638,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[SP_ListaReserva]
+CREATE PROCEDURE [dbo].[SP_ListarReservasPorMedico]
 (
 	@idMedico BIGINT
 )
@@ -646,19 +646,49 @@ AS
 BEGIN
 
 	SELECT 
-		re.idReserva,
-		re.observacion,
-		re.fechaCreacionReserva,
-		p.apellido,
-		p.nombre,
-		hd.fechaHorarioDisponible
-
-	FROM Reserva AS Re 
-	INNER JOIN Paciente AS p ON p.idPaciente =re.idPaciente
-	INNER JOIN HorarioDisponible AS hd ON hd.idHorarioDisponible = re.idHorarioDisponible
+		RE.idReserva,
+		RE.observacion,
+		RE.fechaCreacionReserva,
+		P.apellido,
+		P.nombre,
+		HD.fechaHorarioDisponible
+	FROM Reserva AS RE 
+	INNER JOIN Paciente AS P ON P.idPaciente = RE.idPaciente
+	INNER JOIN HorarioDisponible AS HD 
+	ON HD.idHorarioDisponible = RE.idHorarioDisponible
+	WHERE RE.idMedico = @idMedico;
 
 END
 GO
+
+-- DROP PROCEDURE [SP_ListarReservas]
+
+-- Lista TODAS LAS RESERVAS
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ListarReservas]
+AS 
+BEGIN
+
+	SELECT 
+		R.idReserva,
+		R.observacion,
+		R.fechaCreacionReserva,
+		R.idMedico,
+		P.apellido,
+		P.nombre,
+		HD.fechaHorarioDisponible
+	FROM Reserva AS R 
+	INNER JOIN Paciente AS P ON P.idPaciente = R.idPaciente
+	INNER JOIN HorarioDisponible AS HD 
+		ON HD.idHorarioDisponible = R.idHorarioDisponible 
+	WHERE R.estado = 1
+
+END
+
+-- DROP PROCEDURE [SP_ListaReservaTodas]
+
+-- SELECT * FROM Reserva WHERE idReserva = 2
 
 /* ============ SP de DropDownLists ================= */
 
