@@ -76,17 +76,17 @@
                     <div class="col-sm-4">
                       <!-- select -->                      
                       <asp:Label ID="lblEspecialidades" runat="server" Text="Especialidades"></asp:Label>
-                      <asp:DropDownList ID="ddlEspecialidades" runat="server" CssClass="btn btn-outline-dark dropdown-toggle" 
+                      <asp:DropDownList ID="ddlEspecialidades" runat="server" class="btn btn-secondary dropdown-toggle" 
                         AutoPostBack="true" OnSelectedIndexChanged="ddlEspecialidades_SelectedIndexChanged"></asp:DropDownList>
                      </div>
                      <div class="col-sm-4">
                       <asp:Label ID="lblMedicos" runat="server" Text="Medicos"></asp:Label>
-                      <asp:DropDownList ID="ddlMedicos" runat="server" CssClass="btn btn-outline-dark dropdown-toggle"
+                      <asp:DropDownList ID="ddlMedicos" runat="server" class="btn btn-secondary dropdown-toggle"
                         AutoPostBack="true" OnSelectedIndexChanged="ddlMedicos_SelectedIndexChanged"></asp:DropDownList>                      
                      </div>
                     <div class="col-sm-4">
                       <asp:Label ID="lblHorarioDisponible" runat="server" Text="Horarios Disponibles"></asp:Label>
-                      <asp:DropDownList ID="ddlHorarioDisponible" runat="server"></asp:DropDownList>
+                      <asp:DropDownList ID="ddlHorarioDisponible" runat="server" class="btn btn-secondary dropdown-toggle"></asp:DropDownList>
                     </div>
                   </div>
         </ContentTemplate>
