@@ -25,14 +25,6 @@ namespace CapaPresentacion
               lblUserName.Text = Session["userName"].ToString();
             }          
           }        
-        }
-
-    [WebMethod]
-    public static bool Logout()
-    {
-      HttpContext.Current.Session.Clear();
-      HttpContext.Current.Session.Abandon();
-      return true;
-    }
+        }    
   }
 }

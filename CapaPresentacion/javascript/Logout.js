@@ -1,10 +1,10 @@
 //WIP
-$(document).on('click', '#close', function (e) {
+$(document).on('click', '#idClose', function (e) {
   e.preventDefault();
 
   $.ajax({
     type: "POST",
-    url: "Site.master/Logout",
+    url: "Logout.aspx/CerrarSession",
     dataType: "json",
     contentType: 'application/json; charset=utf-8',
     error: function (xhr, ajaxOptions, thrownError) {
