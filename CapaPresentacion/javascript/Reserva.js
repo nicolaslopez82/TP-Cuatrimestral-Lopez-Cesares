@@ -13,7 +13,7 @@ $(document).ready(function () {
   });
 });
 
-//============================================================//
+//===================== Reserva-BM ============================//
 
 function templateRow() {
   var template = "<tr>";
@@ -56,7 +56,6 @@ function addRowDT(data) {
   });
 
   tabla.fnClearTable();
-  //tabla.clear().draw();
 
   for (var i = 0; i < data.length; i++) {
     tabla.fnAddData([
@@ -67,13 +66,10 @@ function addRowDT(data) {
       data[i].Ppaciente.Nombres,      
       datetimeToString(data[i].FechaCreacion),      
       data[i].Observacion,
-
-
       '<button type="button" value="Actualizar" title="Actualizar" class="btn btn-primary btn-block btn-sm btn-edit" data-target="#imodal" data-toggle="modal"><i class="fa fa-book"></i>  Actualizar</button>' +
       '<button type="button" value="Eliminar" title="Eliminar" class="btn btn-danger btn-block btn-sm btn-delete"><i class="fa fa-book"></i>  Eliminar</button>'
     ]);
   }
-  //  ((data[i].Estado == true) ? "Activo" : "Inactivo")
 }
 
 function addZero(i) {
@@ -115,17 +111,17 @@ function sendDataAjax() {
   });
 }
 
-/*
-function updateDataAjaxx() {
+
+function updateDataAjax() {
 
   var obj = JSON.stringify({
-    IdEspecialidad: JSON.stringify(data[0]),
-    Descripcion: $("#MainContent_txtDescripcionActualizar").val(),
+    strIdReserva: JSON.stringify(data[0]),
+    observaciones: $("#MainContent_txtObservacionesActualizar").val(),
   });
 
   $.ajax({
     type: "POST",
-    url: "Especialidades.aspx/ActualizarDes",
+    url: "Reserva.aspx/ActualizarDatosReserva",
     data: obj,
     dataType: "json",
     contentType: 'application/json; charset=utf-8',
@@ -134,15 +130,14 @@ function updateDataAjaxx() {
     },
     success: function (response) {
       if (response.d) {
-        alert("Registro actualizado de manera correcta.");
+        alert("Reserva actualizada de manera correcta.");
 
       } else {
-        alert("No se pudo actualizar el registro.");
+        alert("No se pudo actualizar la reserva.");
       }
     }
   });
 }
-*/
 
 
 
@@ -175,55 +170,59 @@ function deleteDataAjax(data) {
   });
 }
 
-/*
+
 // evento click para boton actualizar
 $(document).on('click', '.btn-edit', function (e) {
   e.preventDefault();
-
   var row = $(this).parent().parent()[0];
   var dataRow = tabla.fnGetData(row);
-  //console.log(dataRow);
   data = dataRow;
+  console.log(data);
   fillModalData();
 });
-*/
 
-// evento click para boton eliminar
+
+// Evento click para boton eliminar
 $(document).on('click', '.btn-delete', function (e) {
   e.preventDefault();
 
-  //primer método: eliminar la fila del datatble
+  //Primer método: eliminar la fila del datatble
   var row = $(this).parent().parent()[0];
   var dataRow = tabla.fnGetData(row);
 
-  //segundo método: enviar el codigo del paciente al servidor y eliminarlo, renderizar el datatable
-  // paso 1: enviar el id al servidor por medio de ajax
+  //Segundo método: enviar el codigo del paciente al servidor y eliminarlo, renderizar el datatable
+  //Paso 1: enviar el id al servidor por medio de ajax.
   console.log(dataRow);
   deleteDataAjax(dataRow[0]);
-  //Refresh();
+  Refresh();
 });
 
-/*
-// cargar datos en el modal
+
+// Carga datos al modal
 function fillModalData() {
-  $('#MainContent_txtIDactualizar').val(data[0]);
-  $('#MainContent_txtDescripcionActualizar').val(data[1]);
-
+  $('#MainContent_txtIdReservaActualizar').val(data[0]);
+  //$('#ddlHorarioDisponibleActualizar').val(data[1]).change();
+  $('#MainContent_txtHorarioDisponibleActualizar').val(data[1]);
+  $('#MainContent_txtIdMedicoActualizar').val(data[2]);
+  $('#MainContent_txtApellidoPacienteActualizar').val(data[3]);
+  $('#MainContent_txtNombresPacientesActualizar').val(data[4]);
+  $('#MainContent_txtFechaCreacionReservaActualizar').val(data[5]);
+  $('#MainContent_txtObservacionesActualizar').val(data[6]);  
 }
-*/
 
-/*
+
 // enviar la informacion al servidor
-$("#MainContent_btnActualizarGuardarr").click(function (e) {
+$("#MainContent_btnActualizarGuardar").click(function (e) {
   e.preventDefault();
-  updateDataAjaxx();
-  window.location.replace("Especialidades.aspx");
+  updateDataAjax();
+  Refresh();
+  //sendDataAjax();
   //tabla.ajax.reload(null, false);
 });
-*/
+
 
 function Refresh() {
-  window.location.replace("Reserva-bm.aspx");
+  window.location.replace("/Reserva-bm.aspx");
 }
 
 

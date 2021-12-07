@@ -179,6 +179,14 @@ namespace CapaPresentacion
     }
 
     [WebMethod]
+    public static bool ActualizarDatosReserva(String strIdReserva, String observaciones)
+    {
+      int idReserva = Convert.ToInt32(strIdReserva);
+      bool ok = ReservaNegocio.getInstance().ActualizarReserva(idReserva, observaciones);
+      return ok;
+    }
+
+    [WebMethod]
     public List<Especialidad> getLista()
     {
       try

@@ -140,6 +140,7 @@ namespace CapaDAO
                 {
                     Reserva objreserva = new Reserva();
                     objreserva.IdReserva = (int)dr["idReserva"];
+                    objreserva.IdMedico = (int)dr["IdMedico"];
                     objreserva.Observacion = (string)dr["observacion"];
                     objreserva.FechaCreacion = (DateTime)dr["fechaCreacionReserva"];
                     objreserva.Ppaciente = new Paciente();
@@ -209,6 +210,35 @@ namespace CapaDAO
                 con.Close();
             }
             return Lista;
+        }
+
+        public bool ActualizarReserva(int idReserva, string observaciones)
+        {
+            bool ok = false;
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("SP_ActualizarDatosReserva", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmIdReserva", idReserva);
+                cmd.Parameters.AddWithValue("@prmObservacion", observaciones);               
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                ok = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return ok;
         }
     }
 }

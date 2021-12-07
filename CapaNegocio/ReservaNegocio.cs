@@ -87,5 +87,17 @@ namespace CapaNegocio
                 throw ex;
             }
         }
+
+        public bool ActualizarReserva(int idReserva, string observaciones)
+        {
+            try
+            {
+                return ReservaDAO.getInstance().ActualizarReserva(idReserva, observaciones);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

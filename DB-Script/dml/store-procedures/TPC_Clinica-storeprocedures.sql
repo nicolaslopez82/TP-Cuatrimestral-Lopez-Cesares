@@ -690,6 +690,25 @@ END
 
 -- SELECT * FROM Reserva WHERE idReserva = 2
 
+
+/****** Object:  StoredProcedure [dbo].[SP_ActualizarDatosReserva] ******/      
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_ActualizarDatosReserva]
+(
+	@prmIdReserva int,
+	@prmObservacion varchar(350)
+)
+AS
+	BEGIN
+		UPDATE Reserva
+		SET Reserva.observacion = @prmObservacion		
+		WHERE Reserva.idReserva = @prmIdReserva
+	END
+GO
+
 /* ============ SP de DropDownLists ================= */
 
 /****** Object:  StoredProcedure [dbo].[SP_ListarMedicosPorEspecialidad] ******/
