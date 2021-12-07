@@ -94,13 +94,18 @@
     <hr />
     <hr />
       <div class="col-sm-12">
-        <asp:Label ID="lblObservacion" runat="server" Text="Observacion"></asp:Label>
-        <asp:TextBox ID="txtObservacion" runat="server" TextMode="MultiLine"></asp:TextBox>
+        <div class="form-group">
+          <asp:Label ID="lblObservacion" runat="server" Text="Observacion"></asp:Label>
+          <asp:TextBox ID="txtObservacion" runat="server" TextMode="MultiLine"
+            class="form-control" rows="3" placeholder="Enter ..."></asp:TextBox>
+        </div>
       </div>
     <hr />  
     <hr />
     <div class="col-sm-6">
-       <asp:Button ID="btnConfirmarReserva" runat="server" Text="Confirmar Reserva"  CssClass="btn btn-primary" OnClick="btnConfirmarReserva_Click"/>
+      <div class="form-group">
+       <asp:Button ID="btnConfirmarReserva" runat="server" Text="Confirmar Reserva" CssClass="btn btn-primary" OnClick="btnConfirmarReserva_Click"/>
+      </div>
     </div>
     
   </section>
