@@ -8,8 +8,11 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                      <h3 class="card-title">Listado de especialidades</h3>
+                      <h3 class="card-title">Listado de Especialidades</h3>
                     </div>
+              <div>
+                <a href="https://localhost:44377/RegistroEspecialidad.aspx" class="btn btn-primary" >Registrar nueva Especialidad</a>
+              </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                       <table id="especialidadList" class="table table-bordered table-hover table-striped">

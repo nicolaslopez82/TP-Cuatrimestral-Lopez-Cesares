@@ -40,7 +40,7 @@ namespace CapaPresentacion
         {
           Response.Write("<script>alert('Usuario y/o Password incorrecto.')</script>");
           Session.Add("error", "user o pass incorrectos");
-          Response.Redirect("../Error.aspx", false);
+          Response.Redirect("Login.aspx", false);
       }    
     }
 
