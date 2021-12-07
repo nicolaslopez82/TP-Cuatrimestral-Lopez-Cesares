@@ -73,6 +73,19 @@ namespace CapaNegocio
             {
                 throw ex;
             }
+        }       
+
+        //Listar Reservas por Medico
+        public List<Reserva> ListarReservaPorMedico(int idmedico)
+        {
+            try
+            {
+                return ReservaDAO.getInstance().ListarReservasPorMedico(idmedico);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

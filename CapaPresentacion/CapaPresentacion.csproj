@@ -642,7 +642,6 @@
     <Content Include="jAlert\jquery.alerts.css" />
     <Content Include="jAlert\jquery.alerts.js" />
     <Content Include="javascript\Especialidad.js" />
-    <Content Include="javascript\jquery-1.11.2.js" />
     <Content Include="javascript\Logout.js" />
     <Content Include="javascript\Medicos.js" />
     <Content Include="javascript\NavsItems.js" />
@@ -2761,6 +2760,7 @@
     <Content Include="plugins\uplot\uPlot.min.css" />
     <Content Include="Registro.aspx" />
     <Content Include="RegistroPacienteForm.aspx" />
+    <Content Include="Reserva-bm.aspx" />
     <Content Include="Reserva.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2881,6 +2881,13 @@
     </Compile>
     <Compile Include="RegistroPacienteForm.aspx.designer.cs">
       <DependentUpon>RegistroPacienteForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reserva-bm.aspx.cs">
+      <DependentUpon>Reserva-bm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reserva-bm.aspx.designer.cs">
+      <DependentUpon>Reserva-bm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Reserva.aspx.cs">
       <DependentUpon>Reserva.aspx</DependentUpon>
