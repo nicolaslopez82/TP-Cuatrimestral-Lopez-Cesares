@@ -127,10 +127,6 @@
         <!-- /.modal-dialog -->
       </div>
   <!-- /.modal -->  
-
- 
-
-    </section>
   <!-- /.content -->
   
 </asp:Content>
